@@ -1,0 +1,30 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    // Sub-projects
+
+    // Spring Framework
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-jetty'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Redis
+    implementation 'io.lettuce:lettuce-core'
+
+    // Apache Commons
+    implementation 'org.apache.commons:commons-collections4'
+    implementation 'org.apache.commons:commons-lang3'
+
+    // Utilities
+    implementation 'com.google.guava:guava'
+    implementation 'com.github.maricn:logback-slack-appender'
+
+    // My Utilities
+    implementation 'moe.pine:heroku-addons'
+    implementation 'moe.pine:spring-cache-interceptors'
+}
+
+compileJava.dependsOn(processResources)

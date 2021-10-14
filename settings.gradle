@@ -1,0 +1,10 @@
+rootProject.name = 'stkrep'
+
+include ':app'
+
+for (File f : file('libs').listFiles()) {
+  if (f.directory) {
+    include(":lib-${f.name}")
+    project(":lib-${f.name}").projectDir = f
+  }
+}
