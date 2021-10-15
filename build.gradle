@@ -47,10 +47,6 @@ allprojects {
         options.compilerArgs << '-Xlint:deprecation'
     }
 
-    test {
-        useJUnitPlatform()
-    }
-
     configurations {
         implementation.exclude module: 'spring-boot-starter-tomcat'
     }
@@ -94,6 +90,13 @@ allprojects {
         // Annotations
         compileOnly 'net.jcip:jcip-annotations:1.0'
         compileOnly 'com.github.spotbugs:spotbugs-annotations'
+    }
+
+
+    // ----- JUnit ------------------------------------
+
+    test {
+        useJUnitPlatform()
     }
 
 

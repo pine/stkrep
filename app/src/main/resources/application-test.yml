@@ -1,0 +1,17 @@
+# Spring Framework
+# ---------------------------
+
+logging:
+  level:
+    moe.pine.stkrep: DEBUG
+
+spring:
+  redis:
+    database: 0
+
+
+# Job Scheduler
+# ---------------------------
+
+scheduling:
+  enabled: false

@@ -6,3 +6,4 @@ spring:
       enabled: always
   codec:
     max-in-memory-size: 1MB
+
