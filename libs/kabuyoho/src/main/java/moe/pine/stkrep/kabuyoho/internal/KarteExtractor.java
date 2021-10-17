@@ -1,7 +1,6 @@
 package moe.pine.stkrep.kabuyoho.internal;
 
 import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.kabuyoho.models.Color;
 import moe.pine.stkrep.kabuyoho.models.ColoredText;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,6 +18,6 @@ public class KarteExtractor implements Extractor<ColoredText> {
             return null;
         }
 
-        return new ColoredText(element.text(), Color.of(element.classNames()));
+        return new ColoredText(element.text(), ColorUtils.find(element.classNames()));
     }
 }

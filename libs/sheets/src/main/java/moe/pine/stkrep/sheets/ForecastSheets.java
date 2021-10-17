@@ -1,6 +1,7 @@
 package moe.pine.stkrep.sheets;
 
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.BatchUpdateValuesRequest;
 import com.google.api.services.sheets.v4.model.ClearValuesRequest;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.common.annotations.VisibleForTesting;
@@ -75,8 +76,15 @@ public class ForecastSheets {
                 .toList();
     }
 
-    public void putResult() {
-        clearWithNoRetry(); // TODO: retry
+    public void putResult(List<Forecast> forecasts) {
+        final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
+        final BatchUpdateValuesRequest batchUpdateValuesRequest = new BatchUpdateValuesRequest();
+
+        sheets.spreadsheets()
+                .values()
+                .batchUpdate(spreadsheetId, )
+
+//        clearWithNoRetry(); // TODO: retry
     }
 
     void clearWithNoRetry() {
