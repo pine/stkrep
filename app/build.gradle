@@ -2,6 +2,8 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     // Sub-projects
+    implementation project(':lib-sheets')
+    implementation project(':lib-kabuyoho')
 
     // Spring Framework
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
