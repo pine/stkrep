@@ -7,7 +7,8 @@ import com.google.common.annotations.VisibleForTesting;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import moe.pine.stkrep.sheets.exceptions.RetryableException;
+import moe.pine.stkrep.sheets.internal.RetryableException;
+import moe.pine.stkrep.sheets.internal.SheetsFactory;
 
 import java.io.IOException;
 import java.io.InputStream;

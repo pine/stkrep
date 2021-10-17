@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets;
+package moe.pine.stkrep.sheets.internal;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -11,15 +11,14 @@ import com.google.auth.Credentials;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import lombok.experimental.UtilityClass;
-import moe.pine.stkrep.sheets.exceptions.NonRetryableException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 
 @UtilityClass
-class SheetsFactory {
-    Sheets create(
+public class SheetsFactory {
+    public Sheets create(
             String applicationName,
             InputStream credentialsStream
     ) {

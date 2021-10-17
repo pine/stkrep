@@ -3,6 +3,7 @@ package moe.pine.stkrep.jobs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.Kabuyoho;
+import moe.pine.stkrep.kabuyoho.models.Report;
 import moe.pine.stkrep.sheets.ForecastSheets;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.retry.annotation.Retryable;
@@ -28,10 +29,8 @@ public class ForecastJob {
         final List<String> codes = forecastSheets.getCodes();
         log.debug("Fetched codes from spreadsheets: {}", forecastSheets.getCodes());
 
-        for (String code : codes) {
-            kabuyoho.find(code);
-            break;
-        }
+
+//        kabuyoho.find(code);
 
         Thread.sleep(60_000);
     }

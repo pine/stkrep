@@ -1,21 +1,18 @@
 package moe.pine.stkrep.kabuyoho;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.reactive.function.client.WebClient;
+import moe.pine.stkrep.kabuyoho.internal.Browser;
+import moe.pine.stkrep.kabuyoho.internal.BrowsingResults;
+import moe.pine.stkrep.kabuyoho.internal.Extractors;
+import moe.pine.stkrep.kabuyoho.models.Report;
 
 @Slf4j
 public class Kabuyoho {
-    private final WebClient webClient = WebClient.create();
+    private final Browser browser = new Browser();
+    private final Extractors extractors = new Extractors();
 
-
-    public void find(String code) {
-        final String endpoint = "https://kabuyoho.ifis.co.jp/index.php?action=tp1&sa=report_ts&bcode=" + code;
-        final String body =
-                webClient.get()
-                        .uri(endpoint)
-                        .retrieve()
-                        .bodyToMono(String.class)
-                        .block();
-        log.debug("{}", body);
+    public Report find(String code) {
+        final BrowsingResults browsingResults = browser.browse(code);
+        return extractors.extract(browsingResults);
     }
 }
