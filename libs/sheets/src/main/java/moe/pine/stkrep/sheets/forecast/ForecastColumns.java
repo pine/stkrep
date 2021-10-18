@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets;
+package moe.pine.stkrep.sheets.forecast;
 
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.RowData;
@@ -19,7 +19,7 @@ public class ForecastColumns {
                 .map(forecast -> {
                     final List<CellData> cells =
                             COLUMNS.stream()
-                                    .map(column -> column.mapCell(forecast))
+                                    .map(column -> column.map(forecast))
                                     .toList();
 
                     return new RowData().setValues(cells);

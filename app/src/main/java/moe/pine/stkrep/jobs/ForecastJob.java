@@ -3,9 +3,10 @@ package moe.pine.stkrep.jobs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.Kabuyoho;
+import moe.pine.stkrep.kabuyoho.Report;
 import moe.pine.stkrep.models.Forecasts;
-import moe.pine.stkrep.sheets.Forecast;
-import moe.pine.stkrep.sheets.ForecastSheets;
+import moe.pine.stkrep.sheets.forecast.Forecast;
+import moe.pine.stkrep.sheets.forecast.ForecastSheets;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -32,7 +33,12 @@ public class ForecastJob {
 
         final List<Forecast> forecasts =
                 codes.stream()
-                        .map(kabuyoho::find)
+                        .map(code -> {
+                            final Report report = kabuyoho.find(code);
+                            log.debug("Fetched the report from kabuyoho: {}", report);
+
+                            return report;
+                        })
                         .map(Forecasts::of)
                         .toList();
 

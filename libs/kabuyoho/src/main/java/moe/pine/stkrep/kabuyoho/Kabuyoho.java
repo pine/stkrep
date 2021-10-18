@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.internal.Browser;
 import moe.pine.stkrep.kabuyoho.internal.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.internal.Extractors;
-import moe.pine.stkrep.kabuyoho.models.Report;
 
 @Slf4j
 public class Kabuyoho {

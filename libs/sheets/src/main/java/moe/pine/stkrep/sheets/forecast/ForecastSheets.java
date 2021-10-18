@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets;
+package moe.pine.stkrep.sheets.forecast;
 
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.BatchUpdateSpreadsheetRequest;
@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
-import static moe.pine.stkrep.sheets.ForecastColumns.MAX_NUMBER_OF_COLUMNS;
+import static moe.pine.stkrep.sheets.forecast.ForecastColumns.MAX_NUMBER_OF_COLUMNS;
 
 /**
  * @see <a href="https://developers.google.com/sheets/api/quickstart/java"><title>Java Quickstart | Sheets API | Google Developers</a>

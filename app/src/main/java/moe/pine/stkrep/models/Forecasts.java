@@ -1,8 +1,8 @@
 package moe.pine.stkrep.models;
 
 import lombok.experimental.UtilityClass;
-import moe.pine.stkrep.kabuyoho.models.Report;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.kabuyoho.Report;
+import moe.pine.stkrep.sheets.forecast.Forecast;
 
 @UtilityClass
 public class Forecasts {
@@ -10,7 +10,12 @@ public class Forecasts {
         return new Forecast(
                 report.code(),
                 report.name(),
-                report.price()
+                report.price(),
+                report.signal(),
+                report.level(),
+                report.forecastByAnalyst(),
+                report.forecastByPbr(),
+                report.forecastByPer()
         );
     }
 }

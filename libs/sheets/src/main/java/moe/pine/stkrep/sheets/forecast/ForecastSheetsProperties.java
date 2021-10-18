@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets;
+package moe.pine.stkrep.sheets.forecast;
 
 import org.springframework.validation.annotation.Validated;
 

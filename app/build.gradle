@@ -4,6 +4,7 @@ dependencies {
     // Sub-projects
     implementation project(':lib-sheets')
     implementation project(':lib-kabuyoho')
+    implementation project(':lib-format')
 
     // Spring Framework
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'

@@ -1,6 +1,6 @@
 package moe.pine.stkrep.properties;
 
-import moe.pine.stkrep.sheets.ForecastSheetsProperties;
+import moe.pine.stkrep.sheets.forecast.ForecastSheetsProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.validation.annotation.Validated;

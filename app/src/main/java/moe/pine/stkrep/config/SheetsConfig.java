@@ -1,7 +1,7 @@
 package moe.pine.stkrep.config;
 
 import moe.pine.stkrep.properties.SheetsProperties;
-import moe.pine.stkrep.sheets.ForecastSheets;
+import moe.pine.stkrep.sheets.forecast.ForecastSheets;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
