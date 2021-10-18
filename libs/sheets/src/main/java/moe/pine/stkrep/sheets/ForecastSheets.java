@@ -86,7 +86,7 @@ public class ForecastSheets {
             sheets.spreadsheets()
                     .values()
                     .update(spreadsheetId, "結果!R2C1:C" + ForecastColumns.SIZE, valueRange)
-                    .setValueInputOption("RAW")
+                    .setValueInputOption("USER_ENTERED")
                     .execute();
         } catch (Exception e) {
             throw new RuntimeException(e);

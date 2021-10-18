@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 @Slf4j
 public class Extractors {
     public static final Extractor<Integer> PRICE_EXTRACTOR = new PriceExtractor();
+    public static final Extractor<String> NAME_EXTRACTOR = new NameExtractor();
     public static final Extractor<ColoredText> SIGNAL_EXTRACTOR = new KarteExtractor("今日のシグナル");
     public static final Extractor<ColoredText> LEVEL_EXTRACTOR = new KarteExtractor("水準");
     public static final Extractor<ColoredText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteExtractor("目標株価");
@@ -22,6 +23,7 @@ public class Extractors {
 
         return new Report(
                 browsingResults.code(),
+                NAME_EXTRACTOR.extract(document),
                 PRICE_EXTRACTOR.extract(document),
                 SIGNAL_EXTRACTOR.extract(document),
                 LEVEL_EXTRACTOR.extract(document),

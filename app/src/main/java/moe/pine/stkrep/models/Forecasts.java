@@ -9,6 +9,7 @@ public class Forecasts {
     public static Forecast of(Report report) {
         return new Forecast(
                 report.code(),
+                report.name(),
                 report.price()
         );
     }

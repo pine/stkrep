@@ -4,6 +4,7 @@ import org.springframework.lang.Nullable;
 
 public record Report(
         int code,
+        @Nullable String name,
         @Nullable Integer price,
         @Nullable ColoredText signal,
         @Nullable ColoredText level,
