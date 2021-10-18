@@ -1,7 +1,13 @@
 package moe.pine.stkrep.sheets;
 
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.BatchUpdateSpreadsheetRequest;
 import com.google.api.services.sheets.v4.model.ClearValuesRequest;
+import com.google.api.services.sheets.v4.model.GridCoordinate;
+import com.google.api.services.sheets.v4.model.Request;
+import com.google.api.services.sheets.v4.model.RowData;
+import com.google.api.services.sheets.v4.model.Spreadsheet;
+import com.google.api.services.sheets.v4.model.UpdateCellsRequest;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.AccessLevel;
@@ -15,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
+
+import static moe.pine.stkrep.sheets.ForecastColumns.MAX_NUMBER_OF_COLUMNS;
 
 /**
  * @see <a href="https://developers.google.com/sheets/api/quickstart/java"><title>Java Quickstart | Sheets API | Google Developers</a>
@@ -75,24 +83,67 @@ public class ForecastSheets {
                 .toList();
     }
 
-    public void putResult(List<Forecast> forecasts) {
-        final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
-        final List<List<Object>> values = ForecastColumns.collectValues(forecasts);
+    public void setResult(List<Forecast> forecasts) {
+        // getSheetId();
 
+        clearWithNoRetry();
+
+        final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
+
+                /*
+
+        final List<List<Object>> values = ForecastColumns.collectValues(forecasts);
         final ValueRange valueRange = new ValueRange();
         valueRange.setValues(values);
 
         try {
             sheets.spreadsheets()
                     .values()
-                    .update(spreadsheetId, "結果!R2C1:C" + ForecastColumns.SIZE, valueRange)
+                    .update(spreadsheetId, "結果!R2C1:C" + NUMBER_OF_COLUMNS, valueRange)
                     .setValueInputOption("USER_ENTERED")
+                    .execute();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
+
+        final List<RowData> rows = ForecastColumns.collect(forecasts);
+
+
+        final BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest = new BatchUpdateSpreadsheetRequest();
+        final UpdateCellsRequest updateCellsRequest = new UpdateCellsRequest()
+                .setFields("*")
+                .setRows(rows)
+                .setStart(new GridCoordinate()
+                        .setSheetId(676095305) // TODO
+                        .setRowIndex(1)
+                        .setColumnIndex(0));
+
+        batchUpdateSpreadsheetRequest.setRequests(List.of(new Request().setUpdateCells(updateCellsRequest)));
+
+        try {
+            sheets.spreadsheets()
+                    .batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
                     .execute();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+
 //        clearWithNoRetry(); // TODO: retry
+    }
+
+    void getSheetId() {
+        try {
+            final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
+            final Spreadsheet spreadsheet =
+                    sheets.spreadsheets().get(spreadsheetId)
+                            .setIncludeGridData(false)
+                            .execute();
+            log.info("{}", spreadsheet);
+        } catch (IOException e) {
+            throw new RetryableException(e);
+        }
+
     }
 
     void clearWithNoRetry() {
@@ -100,7 +151,7 @@ public class ForecastSheets {
         try {
             sheets.spreadsheets()
                     .values()
-                    .clear(spreadsheetId, "結果", new ClearValuesRequest())
+                    .clear(spreadsheetId, "結果!R2C1:C" + MAX_NUMBER_OF_COLUMNS, new ClearValuesRequest())
                     .execute();
         } catch (IOException e) {
             throw new RetryableException("", e);

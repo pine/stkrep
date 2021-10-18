@@ -36,7 +36,7 @@ public class ForecastJob {
                         .map(Forecasts::of)
                         .toList();
 
-        forecastSheets.putResult(forecasts);
+        forecastSheets.setResult(forecasts);
 
         Thread.sleep(60_000);
     }
