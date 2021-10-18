@@ -5,12 +5,13 @@ import org.springframework.lang.Nullable;
 
 public record Report(
         int code,
-        @Nullable String name,
+        String uri,
+        String name,
         @Nullable Integer price,
-        @Nullable FormattedText signal,
-        @Nullable FormattedText level,
-        @Nullable FormattedText forecastByAnalyst,
-        @Nullable FormattedText forecastByPbr,
-        @Nullable FormattedText forecastByPer
+        FormattedText signal,
+        FormattedText level,
+        FormattedText forecastByAnalyst,
+        FormattedText forecastByPbr,
+        FormattedText forecastByPer
 ) {
 }

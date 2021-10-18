@@ -23,6 +23,7 @@ public class Extractors {
 
         return new Report(
                 browsingResults.code(),
+                browsingResults.uri(),
                 NAME_EXTRACTOR.extract(document),
                 PRICE_EXTRACTOR.extract(document),
                 SIGNAL_EXTRACTOR.extract(document),

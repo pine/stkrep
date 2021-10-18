@@ -1,9 +1,9 @@
 package moe.pine.stkrep.format;
 
-import org.springframework.lang.Nullable;
+import java.awt.Color;
 
 public record FormattedText(
         String text,
-        @Nullable StandardColor color
+        Color color
 ) {
 }

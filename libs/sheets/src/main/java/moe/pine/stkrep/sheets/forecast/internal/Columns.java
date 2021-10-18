@@ -1,18 +1,19 @@
-package moe.pine.stkrep.sheets.forecast;
+package moe.pine.stkrep.sheets.forecast.internal;
 
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.RowData;
 import lombok.experimental.UtilityClass;
+import moe.pine.stkrep.sheets.forecast.Forecast;
 
 import java.util.List;
 
 @UtilityClass
-public class ForecastColumns {
-    public static final List<ForecastColumn> COLUMNS = List.of(ForecastColumn.values());
+public class Columns {
+    public static final List<Column> COLUMNS = List.of(Column.values());
     public static final int NUMBER_OF_COLUMNS = COLUMNS.size();
     public static final int MAX_NUMBER_OF_COLUMNS = 1_000;
 
-    public List<RowData> collect(
+    public List<RowData> collectRows(
             List<Forecast> forecasts
     ) {
         return forecasts.stream()

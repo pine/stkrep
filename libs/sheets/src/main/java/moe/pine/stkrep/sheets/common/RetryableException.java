@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.internal;
+package moe.pine.stkrep.sheets.common;
 
 import java.io.Serial;
 

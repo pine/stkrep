@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.internal;
+package moe.pine.stkrep.sheets.common;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequestInitializer;

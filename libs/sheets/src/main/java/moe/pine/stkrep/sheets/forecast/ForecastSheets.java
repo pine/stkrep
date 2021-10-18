@@ -13,8 +13,9 @@ import com.google.common.annotations.VisibleForTesting;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import moe.pine.stkrep.sheets.internal.RetryableException;
-import moe.pine.stkrep.sheets.internal.SheetsFactory;
+import moe.pine.stkrep.sheets.common.RetryableException;
+import moe.pine.stkrep.sheets.common.SheetsFactory;
+import moe.pine.stkrep.sheets.forecast.internal.Columns;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
-import static moe.pine.stkrep.sheets.forecast.ForecastColumns.MAX_NUMBER_OF_COLUMNS;
+import static moe.pine.stkrep.sheets.forecast.internal.Columns.MAX_NUMBER_OF_COLUMNS;
 
 /**
  * @see <a href="https://developers.google.com/sheets/api/quickstart/java"><title>Java Quickstart | Sheets API | Google Developers</a>
@@ -89,24 +90,7 @@ public class ForecastSheets {
         clearWithNoRetry();
 
         final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
-
-                /*
-
-        final List<List<Object>> values = ForecastColumns.collectValues(forecasts);
-        final ValueRange valueRange = new ValueRange();
-        valueRange.setValues(values);
-
-        try {
-            sheets.spreadsheets()
-                    .values()
-                    .update(spreadsheetId, "結果!R2C1:C" + NUMBER_OF_COLUMNS, valueRange)
-                    .setValueInputOption("USER_ENTERED")
-                    .execute();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
-
-        final List<RowData> rows = ForecastColumns.collect(forecasts);
+        final List<RowData> rows = Columns.collectRows(forecasts);
 
 
         final BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest = new BatchUpdateSpreadsheetRequest();
@@ -119,6 +103,7 @@ public class ForecastSheets {
                         .setColumnIndex(0));
 
         batchUpdateSpreadsheetRequest.setRequests(List.of(new Request().setUpdateCells(updateCellsRequest)));
+
 
         try {
             sheets.spreadsheets()
