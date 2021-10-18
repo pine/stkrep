@@ -1,7 +1,6 @@
 package moe.pine.stkrep.sheets;
 
 import com.google.api.services.sheets.v4.Sheets;
-import com.google.api.services.sheets.v4.model.BatchUpdateValuesRequest;
 import com.google.api.services.sheets.v4.model.ClearValuesRequest;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.common.annotations.VisibleForTesting;
@@ -10,12 +9,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.sheets.internal.RetryableException;
 import moe.pine.stkrep.sheets.internal.SheetsFactory;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * @see <a href="https://developers.google.com/sheets/api/quickstart/java"><title>Java Quickstart | Sheets API | Google Developers</a>
@@ -23,8 +22,6 @@ import java.util.regex.Pattern;
 @Slf4j
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class ForecastSheets {
-    private static final Pattern CODE_PATTERN = Pattern.compile("\\p{Digit}+");
-
     private final Sheets sheets;
     private final ForecastSheetsProperties forecastSheetsProperties;
 
@@ -42,12 +39,12 @@ public class ForecastSheets {
      *
      * @see <a href="https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/get">Method: spreadsheets.values.get | Sheets API | Google Developers</a>
      */
-    public List<String> getCodes() {
+    public List<Integer> getCodes() {
         return getCodesWithNoRetry(); // TODO: retry
     }
 
     @VisibleForTesting
-    List<String> getCodesWithNoRetry() {
+    List<Integer> getCodesWithNoRetry() {
         final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
         final String codesRange = forecastSheetsProperties.codesRange();
 
@@ -69,20 +66,31 @@ public class ForecastSheets {
         log.debug("Finished getting the values. [spreadsheet-id={}, codes-range={}, values={}]",
                 spreadsheetId, codesRange, values);
 
+
         return values.stream()
                 .flatMap(Collection::stream)
                 .map(String::valueOf)
-                .filter(v -> CODE_PATTERN.matcher(v).matches())
+                .filter(NumberUtils::isDigits)
+                .map(NumberUtils::toInt)
                 .toList();
     }
 
     public void putResult(List<Forecast> forecasts) {
         final String spreadsheetId = forecastSheetsProperties.spreadsheetId();
-        final BatchUpdateValuesRequest batchUpdateValuesRequest = new BatchUpdateValuesRequest();
+        final List<List<Object>> values = ForecastColumns.collectValues(forecasts);
 
-        sheets.spreadsheets()
-                .values()
-                .batchUpdate(spreadsheetId, )
+        final ValueRange valueRange = new ValueRange();
+        valueRange.setValues(values);
+
+        try {
+            sheets.spreadsheets()
+                    .values()
+                    .update(spreadsheetId, "結果!R2C1:C" + ForecastColumns.SIZE, valueRange)
+                    .setValueInputOption("RAW")
+                    .execute();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 //        clearWithNoRetry(); // TODO: retry
     }

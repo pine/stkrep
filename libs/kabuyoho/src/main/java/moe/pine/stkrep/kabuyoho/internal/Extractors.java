@@ -21,6 +21,7 @@ public class Extractors {
         final Document document = Jsoup.parse(browsingResults.body());
 
         return new Report(
+                browsingResults.code(),
                 PRICE_EXTRACTOR.extract(document),
                 SIGNAL_EXTRACTOR.extract(document),
                 LEVEL_EXTRACTOR.extract(document),

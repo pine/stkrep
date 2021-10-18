@@ -11,7 +11,7 @@ public class Kabuyoho {
     private final Browser browser = new Browser();
     private final Extractors extractors = new Extractors();
 
-    public Report find(String code) {
+    public Report find(int code) {
         final BrowsingResults browsingResults = browser.browse(code);
         return extractors.extract(browsingResults);
     }

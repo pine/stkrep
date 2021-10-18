@@ -7,6 +7,9 @@ import moe.pine.stkrep.sheets.Forecast;
 @UtilityClass
 public class Forecasts {
     public static Forecast of(Report report) {
-        return new Forecast(report.price());
+        return new Forecast(
+                report.code(),
+                report.price()
+        );
     }
 }

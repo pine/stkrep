@@ -27,7 +27,7 @@ public class ForecastJob {
         // https://developers.google.com/sheets/api/quickstart/java
         // https://stackoverflow.com/questions/57972607/what-is-the-alternative-to-the-deprecated-googlecredential
 
-        final List<String> codes = forecastSheets.getCodes();
+        final List<Integer> codes = forecastSheets.getCodes();
         log.debug("Fetched codes from spreadsheets: {}", forecastSheets.getCodes());
 
         final List<Forecast> forecasts =

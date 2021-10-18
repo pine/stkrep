@@ -7,7 +7,7 @@ public class Browser {
 
     private final WebClient webClient = WebClient.create();
 
-    public BrowsingResults browse(String code) {
+    public BrowsingResults browse(Integer code) {
         final String body =
                 webClient.get()
                         .uri(ENDPOINT, code)
@@ -16,6 +16,6 @@ public class Browser {
                         .blockOptional()
                         .orElse(""); // TODO
 
-        return new BrowsingResults(body);
+        return new BrowsingResults(code, body);
     }
 }
