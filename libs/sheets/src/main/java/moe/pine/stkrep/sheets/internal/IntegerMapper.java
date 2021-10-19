@@ -1,7 +1,7 @@
-package moe.pine.stkrep.sheets.forecast.internal;
+package moe.pine.stkrep.sheets.internal;
 
 import com.google.api.services.sheets.v4.model.ExtendedValue;
-import moe.pine.stkrep.sheets.forecast.Forecast;
+import moe.pine.stkrep.sheets.Forecast;
 
 import java.util.function.Function;
 

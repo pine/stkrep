@@ -2,7 +2,7 @@ package moe.pine.stkrep.models;
 
 import lombok.experimental.UtilityClass;
 import moe.pine.stkrep.kabuyoho.Report;
-import moe.pine.stkrep.sheets.forecast.Forecast;
+import moe.pine.stkrep.sheets.Forecast;
 
 @UtilityClass
 public class Forecasts {

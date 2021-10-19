@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.common;
+package moe.pine.stkrep.sheets.internal;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -11,11 +11,15 @@ import com.google.auth.Credentials;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import lombok.experimental.UtilityClass;
+import moe.pine.stkrep.sheets.internal.NonRetryableException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 
+/**
+ * @see <a href="https://stackoverflow.com/questions/57972607/what-is-the-alternative-to-the-deprecated-googlecredential">What is the alternative to the deprecated 'GoogleCredential'? - Stack Overflow</a>
+ */
 @UtilityClass
 public class SheetsFactory {
     public Sheets create(

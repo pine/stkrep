@@ -1,9 +1,10 @@
-package moe.pine.stkrep.sheets.forecast.internal;
+package moe.pine.stkrep.sheets.internal;
 
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.RowData;
 import lombok.experimental.UtilityClass;
-import moe.pine.stkrep.sheets.forecast.Forecast;
+import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.sheets.internal.Column;
 
 import java.util.List;
 

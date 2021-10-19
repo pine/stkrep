@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.forecast;
+package moe.pine.stkrep.sheets;
 
 import moe.pine.stkrep.format.FormattedText;
 

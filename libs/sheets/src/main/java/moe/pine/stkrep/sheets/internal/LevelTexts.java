@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.forecast.internal;
+package moe.pine.stkrep.sheets.internal;
 
 import lombok.experimental.UtilityClass;
 

@@ -3,10 +3,9 @@ package moe.pine.stkrep.jobs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.Kabuyoho;
-import moe.pine.stkrep.kabuyoho.Report;
 import moe.pine.stkrep.models.Forecasts;
-import moe.pine.stkrep.sheets.forecast.Forecast;
-import moe.pine.stkrep.sheets.forecast.ForecastSheets;
+import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.sheets.ForecastSheets;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,27 +22,21 @@ public class ForecastJob {
     private final Kabuyoho kabuyoho;
 
     @Retryable
-    @Scheduled(cron = "* * * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void execute() throws Exception {
-        // https://developers.google.com/sheets/api/quickstart/java
-        // https://stackoverflow.com/questions/57972607/what-is-the-alternative-to-the-deprecated-googlecredential
-
         final List<Integer> codes = forecastSheets.getCodes();
-        log.debug("Fetched codes from spreadsheets: {}", forecastSheets.getCodes());
+        log.info("Fetched codes from spreadsheets: {}", forecastSheets.getCodes());
 
         final List<Forecast> forecasts =
                 codes.stream()
-                        .map(code -> {
-                            final Report report = kabuyoho.find(code);
-                            log.debug("Fetched the report from kabuyoho: {}", report);
-
-                            return report;
-                        })
+                        .map(kabuyoho::find)
                         .map(Forecasts::of)
                         .toList();
 
-        forecastSheets.setResult(forecasts);
+        final List<String> names = forecasts.stream().map(Forecast::name).toList();
+        log.info("Collected forecasts: {}", names);
 
-        Thread.sleep(60_000);
+        forecastSheets.updateResult(forecasts);
+        log.info("Successfully updated spreadsheets.");
     }
 }
