@@ -138,6 +138,9 @@ allprojects {
     pmd {
         toolVersion = '6.35.0'
     }
+    pmdMain {
+        enabled = false // TODO
+    }
     pmdTest {
         enabled = false
     }

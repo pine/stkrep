@@ -7,11 +7,11 @@ import moe.pine.stkrep.kabuyoho.internal.Extractors;
 
 @Slf4j
 public class Kabuyoho {
-    private final Browser browser = new Browser();
-    private final Extractors extractors = new Extractors();
+    private static final Browser BROWSER = new Browser();
+    private static final Extractors EXTRACTORS = new Extractors();
 
     public Report find(int code) {
-        final BrowsingResults browsingResults = browser.browse(code);
-        return extractors.extract(browsingResults);
+        final BrowsingResults browsingResults = BROWSER.browse(code);
+        return EXTRACTORS.extract(browsingResults);
     }
 }

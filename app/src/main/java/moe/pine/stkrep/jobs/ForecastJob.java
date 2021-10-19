@@ -1,5 +1,6 @@
 package moe.pine.stkrep.jobs;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.Kabuyoho;
@@ -17,6 +18,7 @@ import java.util.List;
 @Component
 @ConditionalOnProperty(value = "scheduling.enabled", havingValue = "true")
 @RequiredArgsConstructor
+@SuppressFBWarnings("EI_EXPOSE_REP2")
 public class ForecastJob {
     private final ForecastSheets forecastSheets;
     private final Kabuyoho kabuyoho;

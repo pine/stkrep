@@ -5,6 +5,7 @@ import moe.pine.stkrep.format.ForegroundColors;
 import org.springframework.lang.Nullable;
 
 import java.awt.Color;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +20,9 @@ public class TextColorFinder {
     public Color find(Set<String> classNames) {
         for (Map.Entry<String, Color> entry : NAME_TO_COLOR.entrySet()) {
             for (String className : classNames) {
-                if (className.toUpperCase().contains(entry.getKey().toUpperCase())) {
+                final String uppercaseClassName = className.toUpperCase(Locale.ROOT);
+
+                if (uppercaseClassName.contains(entry.getKey().toUpperCase(Locale.ROOT))) {
                     return entry.getValue();
                 }
             }
