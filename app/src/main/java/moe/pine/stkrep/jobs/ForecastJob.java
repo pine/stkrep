@@ -24,7 +24,7 @@ public class ForecastJob {
     private final Kabuyoho kabuyoho;
 
     @Retryable
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "0 0 */3 * * *")
     public void execute() throws Exception {
         final List<Integer> codes = forecastSheets.getCodes();
         log.info("Fetched codes from spreadsheets: {}", forecastSheets.getCodes());
