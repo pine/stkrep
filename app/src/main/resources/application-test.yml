@@ -15,3 +15,16 @@ spring:
 
 scheduling:
   enabled: false
+
+
+# Google Sheets
+# ---------------------------
+
+sheets:
+  credentials-path: 'classpath:gcp-credentials.json'
+  application-name: stkrep
+  forecast-sheets:
+    spreadsheet-id: 'spreadsheet-id'
+    codes-range: 'codes-range'
+    result-sheet-name: 'Result'
+    result-offset-y: 1
