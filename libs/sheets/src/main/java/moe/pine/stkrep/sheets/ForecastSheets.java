@@ -7,6 +7,8 @@ import com.google.api.services.sheets.v4.model.ClearValuesResponse;
 import com.google.api.services.sheets.v4.model.GridCoordinate;
 import com.google.api.services.sheets.v4.model.Request;
 import com.google.api.services.sheets.v4.model.RowData;
+import com.google.api.services.sheets.v4.model.Sheet;
+import com.google.api.services.sheets.v4.model.SheetProperties;
 import com.google.api.services.sheets.v4.model.Spreadsheet;
 import com.google.api.services.sheets.v4.model.UpdateCellsRequest;
 import com.google.api.services.sheets.v4.model.ValueRange;
@@ -82,31 +84,49 @@ public class ForecastSheets {
     }
 
     public void updateResult(List<Forecast> forecasts) {
-        // getSheetId();
+        final int resultSheetId = getResultSheetId();
 
         clearWithNoRetry();
-        updateResultWithNoRetry(forecasts);
+        updateResultWithNoRetry(resultSheetId, forecasts);
     }
 
-    void getSheetId() {
+    @VisibleForTesting
+    int getResultSheetId() {
+        log.debug("Start getting the result sheet ID. [spreadsheet-id={}, sheet-title={}]",
+                args.spreadsheetId(), args.resultSheetTitle());
+
+        final Spreadsheet spreadsheet;
         try {
-            final String spreadsheetId = args.spreadsheetId();
-            final Spreadsheet spreadsheet =
-                    sheets.spreadsheets().get(spreadsheetId)
+            spreadsheet =
+                    sheets.spreadsheets()
+                            .get(args.spreadsheetId())
                             .setIncludeGridData(false)
                             .execute();
-            log.info("{}", spreadsheet);
         } catch (IOException e) {
-            throw new RetryableException(e);
+            throw new RetryableException(
+                    String.format("Unable to get the spreadsheet. [spreadsheet-id=%s]",
+                            args.spreadsheetId()), e);
         }
 
+        final int resultSheetId = spreadsheet.getSheets()
+                .stream()
+                .map(Sheet::getProperties)
+                .filter(v -> v.getTitle().equals(args.resultSheetTitle()))
+                .map(SheetProperties::getSheetId)
+                .findFirst()
+                .orElseThrow(() -> new RetryableException("Unable to find the result sheet ID."));
+
+        log.debug("Finished getting the result sheet ID. [spreadsheet-id={},  sheet-title={}, result-sheet-id={}]",
+                args.spreadsheetId(), args.resultSheetTitle(), resultSheetId);
+
+        return resultSheetId;
     }
 
     @VisibleForTesting
     void clearWithNoRetry() {
         final String range =
-                String.format("%s!R%dC1:C%d", args.resultSheetName(),
-                        args.resultOffsetY() + 1, Columns.MAX_NUMBER_OF_COLUMNS + 1);
+                String.format("%s!R%dC1:C%d", args.resultSheetTitle(),
+                        args.resultOffsetY() + 1, Columns.MAX_NUMBER_OF_COLUMNS);
 
         log.debug("Start clearing values. [spreadsheet-id={}], range={}]", args.spreadsheetId(), range);
 
@@ -128,13 +148,20 @@ public class ForecastSheets {
     }
 
     @VisibleForTesting
-    void updateResultWithNoRetry(List<Forecast> forecasts) {
+    void updateResultWithNoRetry(
+            int resultSheetId,
+            List<Forecast> forecasts
+    ) {
+        log.debug("Start updating the result in the spreadsheet. " +
+                        "[spreadsheet-id={}, result-sheet-id={}, result-offset-y={}]",
+                args.spreadsheetId(), resultSheetId, args.resultOffsetY());
+
         final List<RowData> rows = Columns.collectRows(forecasts);
         final UpdateCellsRequest updateCellsRequest = new UpdateCellsRequest()
                 .setFields("*")
                 .setRows(rows)
                 .setStart(new GridCoordinate()
-                        .setSheetId(676095305) // TODO
+                        .setSheetId(resultSheetId)
                         .setRowIndex(args.resultOffsetY())
                         .setColumnIndex(0));
 

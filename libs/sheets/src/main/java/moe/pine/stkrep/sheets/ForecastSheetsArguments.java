@@ -4,7 +4,7 @@ public record ForecastSheetsArguments(
         String applicationName,
         String spreadsheetId,
         String codesRange,
-        String resultSheetName,
+        String resultSheetTitle,
         int resultOffsetY
 ) {
 }
