@@ -11,6 +11,7 @@ public enum Column {
     PRICE(new PriceMapper()),
     SIGNAL(new FormattedTextMapper(Forecast::signal)),
     LEVEL(new FormattedTextMapper(Forecast::level)),
+    RATING(new FormattedTextMapper(Forecast::rating)),
     FORECAST_BY_ANALYST(new FormattedTextMapper(Forecast::forecastByAnalyst)),
     FORECAST_BY_PBR(new FormattedTextMapper(Forecast::forecastByPbr)),
     FORECAST_BY_PER(new FormattedTextMapper(Forecast::forecastByPer)),

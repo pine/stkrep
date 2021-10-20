@@ -10,6 +10,7 @@ public record Report(
         @Nullable Integer price,
         FormattedText signal,
         FormattedText level,
+        FormattedText rating,
         FormattedText forecastByAnalyst,
         FormattedText forecastByPbr,
         FormattedText forecastByPer

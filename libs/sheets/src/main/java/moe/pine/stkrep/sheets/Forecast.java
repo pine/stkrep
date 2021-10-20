@@ -9,6 +9,7 @@ public record Forecast(
         Integer price,
         FormattedText signal,
         FormattedText level,
+        FormattedText rating,
         FormattedText forecastByAnalyst,
         FormattedText forecastByPer,
         FormattedText forecastByPbr

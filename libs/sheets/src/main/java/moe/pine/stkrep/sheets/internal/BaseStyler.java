@@ -33,12 +33,13 @@ public class BaseStyler {
     boolean isHighlighted() {
         final boolean buyingSignal = ForegroundColors.RED.equals(forecast.signal().color());
         final boolean lowLevel = LevelTexts.LOW.equals(forecast.level().text());
+        final boolean highRating = ForegroundColors.RED.equals(forecast.rating().color());
         final boolean lowPriceForecast =
                 ForegroundColors.RED.equals(forecast.forecastByAnalyst().color()) ||
                         ForegroundColors.RED.equals(forecast.forecastByPbr().color()) ||
                         ForegroundColors.RED.equals(forecast.forecastByPer().color());
 
-        return buyingSignal && lowLevel && lowPriceForecast;
+        return buyingSignal && lowLevel && highRating && lowPriceForecast;
     }
 }
 

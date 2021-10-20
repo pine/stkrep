@@ -12,6 +12,7 @@ public class Extractors {
     public static final Extractor<String> NAME_EXTRACTOR = new NameExtractor();
     public static final Extractor<FormattedText> SIGNAL_EXTRACTOR = new KarteExtractor("今日のシグナル");
     public static final Extractor<FormattedText> LEVEL_EXTRACTOR = new KarteExtractor("水準");
+    public static final Extractor<FormattedText> RATING_EXTRACTOR = new KarteExtractor("レーティング");
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteExtractor("PBR基準");
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
@@ -28,6 +29,7 @@ public class Extractors {
                 PRICE_EXTRACTOR.extract(document),
                 SIGNAL_EXTRACTOR.extract(document),
                 LEVEL_EXTRACTOR.extract(document),
+                RATING_EXTRACTOR.extract(document),
                 FORECAST_BY_ANALYST_EXTRACTOR.extract(document),
                 FORECAST_BY_PBR_EXTRACTOR.extract(document),
                 FORECAST_BY_PER_EXTRACTOR.extract(document)

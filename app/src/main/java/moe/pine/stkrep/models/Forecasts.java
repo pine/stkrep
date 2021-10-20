@@ -14,6 +14,7 @@ public class Forecasts {
                 report.price(),
                 report.signal(),
                 report.level(),
+                report.rating(),
                 report.forecastByAnalyst(),
                 report.forecastByPbr(),
                 report.forecastByPer()
