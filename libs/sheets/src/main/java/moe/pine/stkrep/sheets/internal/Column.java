@@ -15,6 +15,7 @@ public enum Column {
     FORECAST_BY_ANALYST(new FormattedTextMapper(Forecast::forecastByAnalyst)),
     FORECAST_BY_PBR(new FormattedTextMapper(Forecast::forecastByPbr)),
     FORECAST_BY_PER(new FormattedTextMapper(Forecast::forecastByPer)),
+    DIVIDEND_YIELD(new StringMapper(Forecast::dividendYield)),
     URI(new HyperlinkMapper(Forecast::uri, HyperlinkTexts.KABUYOHO)),
     ;
 

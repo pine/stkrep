@@ -16,6 +16,7 @@ public class Extractors {
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteExtractor("PBR基準");
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
+    public static final Extractor<String> DIVIDEND_YIELD = new IndexExtractor("配当利回り");
 
     public Report extract(
             BrowsingResults browsingResults
@@ -32,7 +33,8 @@ public class Extractors {
                 RATING_EXTRACTOR.extract(document),
                 FORECAST_BY_ANALYST_EXTRACTOR.extract(document),
                 FORECAST_BY_PBR_EXTRACTOR.extract(document),
-                FORECAST_BY_PER_EXTRACTOR.extract(document)
+                FORECAST_BY_PER_EXTRACTOR.extract(document),
+                DIVIDEND_YIELD.extract(document)
         );
     }
 }

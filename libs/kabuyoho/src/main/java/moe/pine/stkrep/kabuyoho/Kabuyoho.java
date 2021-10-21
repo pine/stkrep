@@ -12,6 +12,10 @@ public class Kabuyoho {
 
     public Report find(int code) {
         final BrowsingResults browsingResults = BROWSER.browse(code);
-        return EXTRACTORS.extract(browsingResults);
+        final Report report = EXTRACTORS.extract(browsingResults);
+
+        log.debug("Finished getting the report: {}", report);
+
+        return report;
     }
 }

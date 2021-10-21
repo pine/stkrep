@@ -17,7 +17,8 @@ public class Forecasts {
                 report.rating(),
                 report.forecastByAnalyst(),
                 report.forecastByPbr(),
-                report.forecastByPer()
+                report.forecastByPer(),
+                report.dividendYield()
         );
     }
 }

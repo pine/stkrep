@@ -12,6 +12,7 @@ public record Forecast(
         FormattedText rating,
         FormattedText forecastByAnalyst,
         FormattedText forecastByPer,
-        FormattedText forecastByPbr
+        FormattedText forecastByPbr,
+        String dividendYield
 ) {
 }
