@@ -14,6 +14,8 @@ public record Report(
         FormattedText forecastByAnalyst,
         FormattedText forecastByPbr,
         FormattedText forecastByPer,
+        String per,
+        String pbr,
         String dividendYield
 ) {
 }

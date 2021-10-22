@@ -16,6 +16,8 @@ public class Extractors {
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteExtractor("PBR基準");
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
+    public static final Extractor<String> PER_YIELD = new IndexExtractor("PER (予想)");
+    public static final Extractor<String> PBR_YIELD = new IndexExtractor("PBR");
     public static final Extractor<String> DIVIDEND_YIELD = new IndexExtractor("配当利回り");
 
     public Report extract(
@@ -34,6 +36,8 @@ public class Extractors {
                 FORECAST_BY_ANALYST_EXTRACTOR.extract(document),
                 FORECAST_BY_PBR_EXTRACTOR.extract(document),
                 FORECAST_BY_PER_EXTRACTOR.extract(document),
+                PER_YIELD.extract(document),
+                PBR_YIELD.extract(document),
                 DIVIDEND_YIELD.extract(document)
         );
     }
