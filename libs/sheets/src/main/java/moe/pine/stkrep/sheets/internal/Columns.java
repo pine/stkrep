@@ -4,14 +4,13 @@ import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.RowData;
 import lombok.experimental.UtilityClass;
 import moe.pine.stkrep.sheets.Forecast;
-import moe.pine.stkrep.sheets.internal.Column;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @UtilityClass
 public class Columns {
-    public static final List<Column> COLUMNS = List.of(Column.values());
-    public static final int NUMBER_OF_COLUMNS = COLUMNS.size();
+    public static final int NUMBER_OF_COLUMNS = Column.values().length;
     public static final int MAX_NUMBER_OF_COLUMNS = 1_000;
 
     public List<RowData> collectRows(
@@ -20,7 +19,7 @@ public class Columns {
         return forecasts.stream()
                 .map(forecast -> {
                     final List<CellData> cells =
-                            COLUMNS.stream()
+                            Stream.of(Column.values())
                                     .map(column -> column.map(forecast))
                                     .toList();
 

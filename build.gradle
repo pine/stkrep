@@ -137,9 +137,12 @@ allprojects {
 
     pmd {
         toolVersion = '6.35.0'
+        consoleOutput = true
+        ruleSetFiles = rootProject.files("config/pmd-ruleset.xml")
+        ruleSets = []
     }
     pmdMain {
-        enabled = false // TODO
+        enabled = true
     }
     pmdTest {
         enabled = false
