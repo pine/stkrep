@@ -11,4 +11,6 @@ dependencies {
 
     // Apache Commons
     implementation 'org.apache.commons:commons-lang3'
+
+    implementation 'moe.pine:reactor-interruptible'
 }
