@@ -7,6 +7,7 @@ public record Forecast(
         String uri,
         String name,
         String price,
+        String marketCapitalization,
         FormattedText signal,
         FormattedText level,
         FormattedText rating,
@@ -15,6 +16,7 @@ public record Forecast(
         FormattedText forecastByPbr,
         String per,
         String pbr,
-        String dividendYield
+        String dividendYield,
+        String equityRatio
 ) {
 }

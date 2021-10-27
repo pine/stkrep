@@ -12,6 +12,7 @@ public class Forecasts {
                 report.uri(),
                 report.name(),
                 report.price(),
+                report.marketCapitalization(),
                 report.signal(),
                 report.level(),
                 report.rating(),
@@ -20,7 +21,8 @@ public class Forecasts {
                 report.forecastByPer(),
                 report.per(),
                 report.pbr(),
-                report.dividendYield()
+                report.dividendYield(),
+                report.equityRatio()
         );
     }
 }

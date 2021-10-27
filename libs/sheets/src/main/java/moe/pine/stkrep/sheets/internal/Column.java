@@ -9,6 +9,7 @@ public enum Column {
     CODE(new IntegerMapper(Forecast::code)),
     NAME(new StringMapper(Forecast::name)),
     PRICE(new StringMapper(Forecast::price)),
+    MARKET_CAPITALIZATION(new StringMapper(Forecast::marketCapitalization)),
     SIGNAL(new FormattedTextMapper(Forecast::signal)),
     LEVEL(new FormattedTextMapper(Forecast::level)),
     RATING(new FormattedTextMapper(Forecast::rating)),
@@ -18,6 +19,7 @@ public enum Column {
     PER(new StringMapper(Forecast::per)),
     PBR(new StringMapper(Forecast::pbr)),
     DIVIDEND_YIELD(new StringMapper(Forecast::dividendYield)),
+    EQUITY_RATIO(new StringMapper(Forecast::equityRatio)),
     URI(new HyperlinkMapper(Forecast::uri, HyperlinkTexts.KABUYOHO)),
     ;
 

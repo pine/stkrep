@@ -1,13 +1,13 @@
 package moe.pine.stkrep.kabuyoho;
 
 import moe.pine.stkrep.format.FormattedText;
-import org.springframework.lang.Nullable;
 
 public record Report(
         int code,
         String uri,
         String name,
         String price,
+        String marketCapitalization,
         FormattedText signal,
         FormattedText level,
         FormattedText rating,
@@ -16,6 +16,7 @@ public record Report(
         FormattedText forecastByPer,
         String per,
         String pbr,
-        String dividendYield
+        String dividendYield,
+        String equityRatio
 ) {
 }
