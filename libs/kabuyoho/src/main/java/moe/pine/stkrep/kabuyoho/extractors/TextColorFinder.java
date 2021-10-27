@@ -1,8 +1,7 @@
-package moe.pine.stkrep.kabuyoho.internal;
+package moe.pine.stkrep.kabuyoho.extractors;
 
 import lombok.experimental.UtilityClass;
 import moe.pine.stkrep.format.ForegroundColors;
-import org.springframework.lang.Nullable;
 
 import java.awt.Color;
 import java.util.Locale;

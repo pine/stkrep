@@ -1,8 +1,9 @@
-package moe.pine.stkrep.kabuyoho.internal;
+package moe.pine.stkrep.kabuyoho.extractors;
 
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.format.FormattedText;
 import moe.pine.stkrep.kabuyoho.Report;
+import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
