@@ -17,7 +17,7 @@ public class Browser {
                                     .uri(uri)
                                     .retrieve()
                                     .bodyToMono(String.class))
-                    .orElseThrow(() -> new RetryableException("Empty body received."));
+                    .orElseThrow(() -> new IllegalStateException("Empty body received."));
         } catch (RuntimeException e) {
             throw new RetryableException(e);
         } catch (InterruptedException e) {
