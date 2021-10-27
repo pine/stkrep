@@ -6,7 +6,7 @@ public record Forecast(
         int code,
         String uri,
         String name,
-        Integer price,
+        String price,
         FormattedText signal,
         FormattedText level,
         FormattedText rating,

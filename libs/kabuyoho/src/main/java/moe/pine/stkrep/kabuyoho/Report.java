@@ -7,7 +7,7 @@ public record Report(
         int code,
         String uri,
         String name,
-        @Nullable Integer price,
+        String price,
         FormattedText signal,
         FormattedText level,
         FormattedText rating,

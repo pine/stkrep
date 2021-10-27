@@ -8,7 +8,7 @@ import moe.pine.stkrep.sheets.Forecast;
 public enum Column {
     CODE(new IntegerMapper(Forecast::code)),
     NAME(new StringMapper(Forecast::name)),
-    PRICE(new PriceMapper()),
+    PRICE(new StringMapper(Forecast::price)),
     SIGNAL(new FormattedTextMapper(Forecast::signal)),
     LEVEL(new FormattedTextMapper(Forecast::level)),
     RATING(new FormattedTextMapper(Forecast::rating)),
