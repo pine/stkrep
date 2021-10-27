@@ -7,17 +7,21 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.awt.Color;
+
 @RequiredArgsConstructor
 public class KarteExtractor implements Extractor<FormattedText> {
     private final String title;
 
     @Override
     public FormattedText extract(Document document) {
-        final Element element = document.selectFirst(".cont_figu_div:contains(" + title + ") .str_b");
+        final String cssQuery = String.format(".brnd_karte dl:contains(%s) dd", title);
+        final Element element = document.selectFirst(cssQuery);
         if (element == null) {
             return new FormattedText(StringUtils.EMPTY, ForegroundColors.BLACK);
         }
 
-        return new FormattedText(element.text(), TextColorFinder.find(element.classNames()));
+        final Color color = TextColorFinder.find(element.classNames()).orElse(ForegroundColors.BLACK);
+        return new FormattedText(element.text(), color);
     }
 }

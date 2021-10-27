@@ -6,12 +6,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 @RequiredArgsConstructor
-public class IndexExtractor implements Extractor<String> {
-    private final String text;
+public class SummaryBoxExtractor implements Extractor<String> {
+    private final String title;
 
     @Override
     public String extract(Document document) {
-        final Element element = document.selectFirst(".content_index tr:contains(" + text + ") .num");
+        final String cssQuery = String.format(".smary_box dl:contains(%s) dd", title);
+        final Element element = document.selectFirst(cssQuery);
         if (element == null) {
             return StringUtils.EMPTY;
         }

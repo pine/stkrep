@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 import java.awt.Color;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 @UtilityClass
@@ -16,18 +17,17 @@ public class TextColorFinder {
                     "red", ForegroundColors.RED,
                     "green", ForegroundColors.GREEN);
 
-    @Nullable
-    public Color find(Set<String> classNames) {
+    public Optional<Color> find(Set<String> classNames) {
         for (Map.Entry<String, Color> entry : NAME_TO_COLOR.entrySet()) {
             for (String className : classNames) {
                 final String uppercaseClassName = className.toUpperCase(Locale.ROOT);
 
                 if (uppercaseClassName.contains(entry.getKey().toUpperCase(Locale.ROOT))) {
-                    return entry.getValue();
+                    return Optional.of(entry.getValue());
                 }
             }
         }
 
-        return null;
+        return Optional.empty();
     }
 }
