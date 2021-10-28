@@ -21,8 +21,8 @@ public enum Column {
     FORECAST_BY_PER(new FormattedTextMapper(Forecast::forecastByPer)),
     PER(new DoubleMapper(Forecast::per, "###.# 倍")),
     PBR(new DoubleMapper(Forecast::pbr, "###.## 倍")),
-    DIVIDEND_YIELD(new StringMapper(Forecast::dividendYield)),
-    EQUITY_RATIO(new StringMapper(Forecast::equityRatio)),
+    DIVIDEND_YIELD(new DoubleMapper(Forecast::dividendYield, "###.## %")),
+    EQUITY_RATIO(new DoubleMapper(Forecast::equityRatio, "###.# %")),
     URI(new HyperlinkMapper(Forecast::uri, HyperlinkTexts.KABUYOHO)),
     ;
 

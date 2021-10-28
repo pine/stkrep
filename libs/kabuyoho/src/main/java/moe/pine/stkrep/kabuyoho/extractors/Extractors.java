@@ -20,8 +20,8 @@ public class Extractors {
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
     public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
     public static final Extractor<Double> PBR_YIELD = new SummaryBoxDoubleExtractor("PBR");
-    public static final Extractor<String> DIVIDEND_YIELD = new SummaryBoxStringExtractor("配当利回り");
-    public static final Extractor<String> EQUITY_RATIO = new SummaryBoxStringExtractor("自己資本比率");
+    public static final Extractor<Double> DIVIDEND_YIELD = new SummaryBoxDoubleExtractor("配当利回り");
+    public static final Extractor<Double> EQUITY_RATIO = new SummaryBoxDoubleExtractor("自己資本比率");
 
     public Report extract(
             BrowsingResults browsingResults
