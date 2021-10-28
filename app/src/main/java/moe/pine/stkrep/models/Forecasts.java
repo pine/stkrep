@@ -21,6 +21,8 @@ public class Forecasts {
                 report.forecastByPer(),
                 report.per(),
                 report.pbr(),
+                report.roa(),
+                report.roe(),
                 report.dividendYield(),
                 report.equityRatio()
         );

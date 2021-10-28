@@ -19,10 +19,12 @@ public enum Column {
     FORECAST_BY_ANALYST(new FormattedTextMapper(Forecast::forecastByAnalyst)),
     FORECAST_BY_PBR(new FormattedTextMapper(Forecast::forecastByPbr)),
     FORECAST_BY_PER(new FormattedTextMapper(Forecast::forecastByPer)),
-    PER(new DoubleMapper(Forecast::per, "###.# 倍")),
-    PBR(new DoubleMapper(Forecast::pbr, "###.## 倍")),
-    DIVIDEND_YIELD(new DoubleMapper(Forecast::dividendYield, "###.## %")),
-    EQUITY_RATIO(new DoubleMapper(Forecast::equityRatio, "###.# %")),
+    PER(new DoubleMapper(Forecast::per, "##0.0 倍")),
+    PBR(new DoubleMapper(Forecast::pbr, "##0.00 倍")),
+    DIVIDEND_YIELD(new DoubleMapper(Forecast::dividendYield, "##0.00 \"%\"")),
+    ROA(new DoubleMapper(Forecast::roa, "###.00 \"%\"")),
+    ROE(new DoubleMapper(Forecast::roe, "###.00 \"%\"")),
+    EQUITY_RATIO(new DoubleMapper(Forecast::equityRatio, "###.0 \"%\"")),
     URI(new HyperlinkMapper(Forecast::uri, HyperlinkTexts.KABUYOHO)),
     ;
 

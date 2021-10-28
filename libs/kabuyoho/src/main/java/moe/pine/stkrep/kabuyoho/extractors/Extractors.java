@@ -21,6 +21,8 @@ public class Extractors {
     public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
     public static final Extractor<Double> PBR_YIELD = new SummaryBoxDoubleExtractor("PBR");
     public static final Extractor<Double> DIVIDEND_YIELD = new SummaryBoxDoubleExtractor("配当利回り");
+    public static final Extractor<Double> ROA = new SummaryBoxDoubleExtractor("ROA");
+    public static final Extractor<Double> ROE = new SummaryBoxDoubleExtractor("ROE");
     public static final Extractor<Double> EQUITY_RATIO = new SummaryBoxDoubleExtractor("自己資本比率");
 
     public Report extract(
@@ -43,6 +45,8 @@ public class Extractors {
                 PER_YIELD.extract(document),
                 PBR_YIELD.extract(document),
                 DIVIDEND_YIELD.extract(document),
+                ROA.extract(document),
+                ROE.extract(document),
                 EQUITY_RATIO.extract(document)
         );
     }

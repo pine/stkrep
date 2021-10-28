@@ -17,6 +17,8 @@ public record Forecast(
         double per,
         double pbr,
         double dividendYield,
+        double roa,
+        double roe,
         double equityRatio
 ) {
 }

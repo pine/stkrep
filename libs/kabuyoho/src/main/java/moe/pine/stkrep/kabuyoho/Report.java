@@ -16,6 +16,8 @@ public record Report(
         FormattedText forecastByPer,
         double per,
         double pbr,
+        double roa,
+        double roe,
         double dividendYield,
         double equityRatio
 ) {
