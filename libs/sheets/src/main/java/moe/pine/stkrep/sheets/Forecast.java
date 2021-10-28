@@ -15,7 +15,7 @@ public record Forecast(
         FormattedText forecastByPer,
         FormattedText forecastByPbr,
         double per,
-        String pbr,
+        double pbr,
         String dividendYield,
         String equityRatio
 ) {
