@@ -3,6 +3,9 @@ package moe.pine.stkrep.sheets.internal;
 import com.google.api.services.sheets.v4.model.CellData;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.sheets.mapper.DoubleMapper;
+import moe.pine.stkrep.sheets.mapper.IntegerMapper;
+import moe.pine.stkrep.sheets.mapper.Mapper;
 
 @RequiredArgsConstructor
 public enum Column {
@@ -16,7 +19,7 @@ public enum Column {
     FORECAST_BY_ANALYST(new FormattedTextMapper(Forecast::forecastByAnalyst)),
     FORECAST_BY_PBR(new FormattedTextMapper(Forecast::forecastByPbr)),
     FORECAST_BY_PER(new FormattedTextMapper(Forecast::forecastByPer)),
-    PER(new StringMapper(Forecast::per)),
+    PER(new DoubleMapper(Forecast::per, "##.## 倍")),
     PBR(new StringMapper(Forecast::pbr)),
     DIVIDEND_YIELD(new StringMapper(Forecast::dividendYield)),
     EQUITY_RATIO(new StringMapper(Forecast::equityRatio)),

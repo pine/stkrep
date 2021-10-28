@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.internal;
+package moe.pine.stkrep.sheets.mapper;
 
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.CellFormat;

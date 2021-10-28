@@ -3,6 +3,7 @@ package moe.pine.stkrep.sheets.internal;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.sheets.mapper.Mapper;
 
 import java.util.function.Function;
 

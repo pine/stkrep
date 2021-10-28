@@ -18,7 +18,7 @@ public class Extractors {
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteExtractor("PBR基準");
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
-    public static final Extractor<String> PER_YIELD = new SummaryBoxStringExtractor("PER");
+    public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
     public static final Extractor<String> PBR_YIELD = new SummaryBoxStringExtractor("PBR");
     public static final Extractor<String> DIVIDEND_YIELD = new SummaryBoxStringExtractor("配当利回り");
     public static final Extractor<String> EQUITY_RATIO = new SummaryBoxStringExtractor("自己資本比率");
