@@ -1,22 +1,34 @@
 package moe.pine.stkrep.kabuyoho.browser;
 
 import com.google.common.annotations.VisibleForTesting;
+import lombok.extern.slf4j.Slf4j;
 import moe.pine.reactor.interruptible.MonoUtils;
 import moe.pine.stkrep.kabuyoho.exceptions.NonRetryableException;
 import moe.pine.stkrep.kabuyoho.exceptions.RetryableException;
+import moe.pine.stkrep.retry.RetryTemplateFactory;
+import org.springframework.retry.support.RetryTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.Duration;
 
+@Slf4j
 public class Browser {
-    private static final WebClient WEB_CLIENT = WebClient.create(); // TODO
-
     private static final String BASE_URL = "https://kabuyoho.jp/reportTop?bcode=";
     private static final Duration BLOCK_TIMEOUT = Duration.ofSeconds(60L);
 
+    private static final WebClient WEB_CLIENT = WebClient.create(); // TODO
+    private static final RetryTemplate RETRY_TEMPLATE =
+            RetryTemplateFactory.create(5, 1000, 5.0, RetryableException.class); // TODO
+
     public BrowsingResults browse(int code) {
-        // TODO: retry
-        return browseWithNoRetry(code);
+        return RETRY_TEMPLATE.execute(ctx -> {
+            try {
+                return browseWithNoRetry(code);
+            } catch (RuntimeException e) {
+                log.warn("Failed to execute. [retry-count={}]", ctx.getRetryCount(), e);
+                throw e;
+            }
+        });
     }
 
     @VisibleForTesting
