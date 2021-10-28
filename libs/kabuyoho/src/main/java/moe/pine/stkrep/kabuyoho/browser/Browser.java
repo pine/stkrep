@@ -1,6 +1,8 @@
 package moe.pine.stkrep.kabuyoho.browser;
 
 import com.google.common.annotations.VisibleForTesting;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.reactor.interruptible.MonoUtils;
 import moe.pine.stkrep.kabuyoho.exceptions.NonRetryableException;
@@ -12,16 +14,21 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.time.Duration;
 
 @Slf4j
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class Browser {
     private static final String BASE_URL = "https://kabuyoho.jp/reportTop?bcode=";
     private static final Duration BLOCK_TIMEOUT = Duration.ofSeconds(60L);
 
-    private static final WebClient WEB_CLIENT = WebClient.create(); // TODO
-    private static final RetryTemplate RETRY_TEMPLATE =
-            RetryTemplateFactory.create(5, 1000, 5.0, RetryableException.class); // TODO
+    private final WebClient webClient;
+    private final RetryTemplate retryTemplate;
+
+    public Browser() {
+        this(WebClient.create(),
+                RetryTemplateFactory.create(5, 1000, 5.0, RetryableException.class));
+    }
 
     public BrowsingResults browse(int code) {
-        return RETRY_TEMPLATE.execute(ctx -> {
+        return retryTemplate.execute(ctx -> {
             try {
                 return browseWithNoRetry(code);
             } catch (RuntimeException e) {
@@ -37,7 +44,7 @@ public class Browser {
         final String body;
         try {
             body = MonoUtils.blockOptional(
-                            WEB_CLIENT.get().uri(uri).retrieve().bodyToMono(String.class),
+                            webClient.get().uri(uri).retrieve().bodyToMono(String.class),
                             BLOCK_TIMEOUT)
                     .orElseThrow(() -> new IllegalStateException("Mono.empty returned."));
         } catch (RuntimeException e) {

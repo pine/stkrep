@@ -6,10 +6,10 @@ import moe.pine.stkrep.sheets.Forecast;
 
 @RequiredArgsConstructor
 public enum Column {
-    CODE(new IntegerMapper(Forecast::code)),
+    CODE(new IntegerMapper(Forecast::code, "####")),
     NAME(new StringMapper(Forecast::name)),
-    PRICE(new StringMapper(Forecast::price)),
-    MARKET_CAPITALIZATION(new StringMapper(Forecast::marketCapitalization)),
+    PRICE(new IntegerMapper(Forecast::price, "###,###,### 円")),
+    MARKET_CAPITALIZATION(new IntegerMapper(Forecast::marketCapitalization, "###,###,### 億円")),
     SIGNAL(new FormattedTextMapper(Forecast::signal)),
     LEVEL(new FormattedTextMapper(Forecast::level)),
     RATING(new FormattedTextMapper(Forecast::rating)),

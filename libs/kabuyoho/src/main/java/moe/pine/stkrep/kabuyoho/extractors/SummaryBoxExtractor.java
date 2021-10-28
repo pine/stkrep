@@ -6,17 +6,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 @RequiredArgsConstructor
-public class SummaryBoxExtractor implements Extractor<String> {
+public abstract class SummaryBoxExtractor<T> implements Extractor<T> {
     private final String title;
 
     @Override
-    public String extract(Document document) {
+    public T extract(Document document) {
         final String cssQuery = String.format(".smary_box dl:contains(%s) dd", title);
         final Element element = document.selectFirst(cssQuery);
         if (element == null) {
-            return StringUtils.EMPTY;
+            return onExtract(StringUtils.EMPTY);
         }
 
-        return StringUtils.defaultString(element.text());
+        return onExtract(StringUtils.defaultString(element.text()));
     }
+
+    protected abstract T onExtract(String text);
 }
