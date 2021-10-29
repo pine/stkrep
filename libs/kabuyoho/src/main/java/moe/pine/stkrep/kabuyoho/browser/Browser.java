@@ -24,16 +24,21 @@ public class Browser {
 
     public Browser() {
         this(WebClient.create(),
-                RetryTemplateFactory.create(5, 1000, 5.0, RetryableException.class));
+                RetryTemplateFactory.create(10, 1000, 2.0, RetryableException.class));
     }
 
     public BrowsingResults browse(int code) {
         return retryTemplate.execute(ctx -> {
             try {
                 return browseWithNoRetry(code);
+            } catch (RetryableException e) {
+                final String msg = String.format("Failed to execute. [retry-count=%d]", ctx.getRetryCount());
+                log.warn(msg, e);
+                throw new RetryableException(msg, e);
             } catch (RuntimeException e) {
-                log.warn("Failed to execute. [retry-count={}]", ctx.getRetryCount(), e);
-                throw e;
+                final String msg = String.format("Failed to execute. [retry-count=%d]", ctx.getRetryCount());
+                log.error(msg, e);
+                throw new NonRetryableException(msg, e);
             }
         });
     }
