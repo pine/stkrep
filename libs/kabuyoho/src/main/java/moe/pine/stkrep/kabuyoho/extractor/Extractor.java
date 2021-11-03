@@ -1,4 +1,4 @@
-package moe.pine.stkrep.kabuyoho.extractors;
+package moe.pine.stkrep.kabuyoho.extractor;
 
 import org.jsoup.nodes.Document;
 

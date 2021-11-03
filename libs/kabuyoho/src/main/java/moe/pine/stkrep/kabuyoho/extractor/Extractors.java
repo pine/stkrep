@@ -1,9 +1,10 @@
-package moe.pine.stkrep.kabuyoho.extractors;
+package moe.pine.stkrep.kabuyoho.extractor;
 
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.format.FormattedText;
 import moe.pine.stkrep.kabuyoho.Report;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
+import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculators;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -21,9 +22,12 @@ public class Extractors {
     public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
     public static final Extractor<Double> PBR_YIELD = new SummaryBoxDoubleExtractor("PBR");
     public static final Extractor<Double> DIVIDEND_YIELD = new SummaryBoxDoubleExtractor("配当利回り");
-    public static final Extractor<Double> ROA = new SummaryBoxDoubleExtractor("ROA");
-    public static final Extractor<Double> ROE = new SummaryBoxDoubleExtractor("ROE");
-    public static final Extractor<Double> EQUITY_RATIO = new SummaryBoxDoubleExtractor("自己資本比率");
+    public static final Extractor<Double> ROA =
+            new SummaryBoxDoubleExtractor("ROA", DoubleCalculators.HUNDREDTH_DIVIDER);
+    public static final Extractor<Double> ROE =
+            new SummaryBoxDoubleExtractor("ROE", DoubleCalculators.HUNDREDTH_DIVIDER);
+    public static final Extractor<Double> EQUITY_RATIO =
+            new SummaryBoxDoubleExtractor("自己資本比率", DoubleCalculators.HUNDREDTH_DIVIDER);
 
     public Report extract(
             BrowsingResults browsingResults

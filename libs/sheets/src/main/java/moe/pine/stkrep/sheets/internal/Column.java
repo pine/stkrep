@@ -22,9 +22,9 @@ public enum Column {
     PER(new DoubleMapper(Forecast::per, "##0.0 \"倍\"")),
     PBR(new DoubleMapper(Forecast::pbr, "##0.00 \"倍\"")),
     DIVIDEND_YIELD(new DoubleMapper(Forecast::dividendYield, "##0.00 \"%\"")),
-    ROA(new DoubleMapper(Forecast::roa, "###,##0.00 \"%\"")),
-    ROE(new DoubleMapper(Forecast::roe, "###,##0.00 \"%\"")),
-    EQUITY_RATIO(new DoubleMapper(Forecast::equityRatio, "##0.0 \"%\"")),
+    ROA(new DoubleMapper(Forecast::roa, "###,##0.00 %")),
+    ROE(new DoubleMapper(Forecast::roe, "###,##0.00 %")),
+    EQUITY_RATIO(new DoubleMapper(Forecast::equityRatio, "##0.0 %")),
     URI(new HyperlinkMapper(Forecast::uri, HyperlinkTexts.KABUYOHO)),
     ;
 

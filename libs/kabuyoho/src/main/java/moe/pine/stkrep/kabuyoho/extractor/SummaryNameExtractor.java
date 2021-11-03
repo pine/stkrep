@@ -1,4 +1,4 @@
-package moe.pine.stkrep.kabuyoho.extractors;
+package moe.pine.stkrep.kabuyoho.extractor;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

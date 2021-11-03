@@ -1,4 +1,4 @@
-package moe.pine.stkrep.kabuyoho.extractors;
+package moe.pine.stkrep.kabuyoho.extractor;
 
 import lombok.experimental.UtilityClass;
 import moe.pine.stkrep.format.ForegroundColors;
