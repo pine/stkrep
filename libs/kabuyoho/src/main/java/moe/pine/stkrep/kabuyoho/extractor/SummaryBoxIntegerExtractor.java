@@ -1,6 +1,6 @@
 package moe.pine.stkrep.kabuyoho.extractor;
 
-import moe.pine.stkrep.kabuyoho.parsers.IntegerParser;
+import moe.pine.stkrep.kabuyoho.parser.IntegerParser;
 
 public class SummaryBoxIntegerExtractor extends SummaryBoxExtractor<Integer> {
     public SummaryBoxIntegerExtractor(String title) {

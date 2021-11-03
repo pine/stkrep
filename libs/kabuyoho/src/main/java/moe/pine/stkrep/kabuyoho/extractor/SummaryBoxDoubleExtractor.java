@@ -2,7 +2,7 @@ package moe.pine.stkrep.kabuyoho.extractor;
 
 import moe.pine.stkrep.kabuyoho.calculator.Calculator;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculators;
-import moe.pine.stkrep.kabuyoho.parsers.DoubleParser;
+import moe.pine.stkrep.kabuyoho.parser.DoubleParser;
 
 public class SummaryBoxDoubleExtractor extends SummaryBoxExtractor<Double> {
     private final Calculator<Double> calculator;

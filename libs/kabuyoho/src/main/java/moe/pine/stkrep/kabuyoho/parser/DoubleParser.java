@@ -1,4 +1,4 @@
-package moe.pine.stkrep.kabuyoho.parsers;
+package moe.pine.stkrep.kabuyoho.parser;
 
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.CharUtils;

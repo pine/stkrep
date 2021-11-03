@@ -1,4 +1,4 @@
-package moe.pine.stkrep.kabuyoho.exceptions;
+package moe.pine.stkrep.kabuyoho.exception;
 
 import java.io.Serial;
 
