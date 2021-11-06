@@ -15,6 +15,7 @@ public interface TextEnum {
             }
         }
 
-        throw new RuntimeException("Enum not found.");
+        throw new IllegalArgumentException(
+                String.format("Enum not found. [clazz=%s, text=%s]", clazz, text));
     }
 }

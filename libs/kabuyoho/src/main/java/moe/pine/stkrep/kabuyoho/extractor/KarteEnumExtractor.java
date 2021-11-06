@@ -24,6 +24,5 @@ public class KarteEnumExtractor<E extends Enum<E> & TextEnum> implements Extract
         }
 
         return TextEnum.getEnum(clazz, element.text());
-
     }
 }
