@@ -1,4 +1,7 @@
 dependencies {
     // Spring Framework
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Apache Commons
+    implementation 'org.apache.commons:commons-lang3'
 }

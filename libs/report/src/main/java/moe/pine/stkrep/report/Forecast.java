@@ -8,7 +8,7 @@ public record Forecast(
         String name,
         int price,
         int marketCapitalization,
-        FormattedText signal,
+        TrendSignal trendSignal,
         FormattedText level,
         FormattedText rating,
         FormattedText forecastByAnalyst,

@@ -31,7 +31,6 @@ public class BaseStyler {
 
     @VisibleForTesting
     boolean isHighlighted() {
-        final boolean buyingSignal = ForegroundColors.RED.equals(forecast.signal().color());
         final boolean lowLevel = LevelTexts.LOW.equals(forecast.level().text());
         final boolean lowRating = ForegroundColors.GREEN.equals(forecast.rating().color());
         final boolean lowPriceForecast =
@@ -39,7 +38,7 @@ public class BaseStyler {
                         ForegroundColors.RED.equals(forecast.forecastByPbr().color()) ||
                         ForegroundColors.RED.equals(forecast.forecastByPer().color());
 
-        return buyingSignal && lowLevel && !lowRating && lowPriceForecast;
+        return lowLevel && !lowRating && lowPriceForecast;
     }
 }
 
