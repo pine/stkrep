@@ -2,9 +2,9 @@ package moe.pine.stkrep.kabuyoho.extractor;
 
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.format.FormattedText;
-import moe.pine.stkrep.kabuyoho.Report;
+import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
-import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculators;
+import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -21,20 +21,21 @@ public class Extractors {
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
     public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
     public static final Extractor<Double> PBR_YIELD = new SummaryBoxDoubleExtractor("PBR");
-    public static final Extractor<Double> DIVIDEND_YIELD = new SummaryBoxDoubleExtractor("配当利回り");
+    public static final Extractor<Double> DIVIDEND_YIELD =
+            new SummaryBoxDoubleExtractor("配当利回り", DoubleCalculator.HUNDREDTH_DIVIDER);
     public static final Extractor<Double> ROA =
-            new SummaryBoxDoubleExtractor("ROA", DoubleCalculators.HUNDREDTH_DIVIDER);
+            new SummaryBoxDoubleExtractor("ROA", DoubleCalculator.HUNDREDTH_DIVIDER);
     public static final Extractor<Double> ROE =
-            new SummaryBoxDoubleExtractor("ROE", DoubleCalculators.HUNDREDTH_DIVIDER);
+            new SummaryBoxDoubleExtractor("ROE", DoubleCalculator.HUNDREDTH_DIVIDER);
     public static final Extractor<Double> EQUITY_RATIO =
-            new SummaryBoxDoubleExtractor("自己資本比率", DoubleCalculators.HUNDREDTH_DIVIDER);
+            new SummaryBoxDoubleExtractor("自己資本比率", DoubleCalculator.HUNDREDTH_DIVIDER);
 
-    public Report extract(
+    public Forecast extract(
             BrowsingResults browsingResults
     ) {
         final Document document = Jsoup.parse(browsingResults.body());
 
-        return new Report(
+        return new Forecast(
                 browsingResults.code(),
                 browsingResults.uri(),
                 NAME_EXTRACTOR.extract(document),

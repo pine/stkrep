@@ -6,7 +6,7 @@ import com.google.common.annotations.VisibleForTesting;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.format.BackgroundColors;
 import moe.pine.stkrep.format.ForegroundColors;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.report.Forecast;
 
 @RequiredArgsConstructor
 public class BaseStyler {

@@ -3,7 +3,7 @@ package moe.pine.stkrep.sheets.mapper;
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.sheets.internal.BaseStyler;
 
 public interface Mapper {

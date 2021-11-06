@@ -3,7 +3,7 @@ package moe.pine.stkrep.sheets.internal;
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.RowData;
 import lombok.experimental.UtilityClass;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.report.Forecast;
 
 import java.util.List;
 import java.util.stream.Stream;

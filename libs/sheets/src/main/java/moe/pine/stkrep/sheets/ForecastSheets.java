@@ -16,6 +16,7 @@ import com.google.common.annotations.VisibleForTesting;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.sheets.internal.Columns;
 import moe.pine.stkrep.sheets.internal.RetryableException;
 import moe.pine.stkrep.sheets.internal.SheetsFactory;

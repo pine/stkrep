@@ -1,7 +1,7 @@
 package moe.pine.stkrep.kabuyoho.extractor;
 
 import moe.pine.stkrep.kabuyoho.calculator.Calculator;
-import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculators;
+import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
 import moe.pine.stkrep.kabuyoho.parser.DoubleParser;
 
 @SuppressWarnings("PMD.BeanMembersShouldSerialize")
@@ -9,7 +9,7 @@ public class SummaryBoxDoubleExtractor extends SummaryBoxExtractor<Double> {
     private final Calculator<Double> calculator;
 
     public SummaryBoxDoubleExtractor(String title) {
-        this(title, DoubleCalculators.NONE);
+        this(title, DoubleCalculator.NONE);
     }
 
     public SummaryBoxDoubleExtractor(String title, Calculator<Double> calculator) {

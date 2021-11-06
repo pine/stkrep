@@ -2,7 +2,7 @@ package moe.pine.stkrep.sheets.internal;
 
 import com.google.api.services.sheets.v4.model.CellData;
 import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.sheets.mapper.DoubleMapper;
 import moe.pine.stkrep.sheets.mapper.IntegerMapper;
 import moe.pine.stkrep.sheets.mapper.Mapper;
@@ -21,7 +21,7 @@ public enum Column {
     FORECAST_BY_PER(new FormattedTextMapper(Forecast::forecastByPer)),
     PER(new DoubleMapper(Forecast::per, "##0.0 \"倍\"")),
     PBR(new DoubleMapper(Forecast::pbr, "##0.00 \"倍\"")),
-    DIVIDEND_YIELD(new DoubleMapper(Forecast::dividendYield, "##0.00 \"%\"")),
+    DIVIDEND_YIELD(new DoubleMapper(Forecast::dividendYield, "##0.00 %")),
     ROA(new DoubleMapper(Forecast::roa, "###,##0.00 %")),
     ROE(new DoubleMapper(Forecast::roe, "###,##0.00 %")),
     EQUITY_RATIO(new DoubleMapper(Forecast::equityRatio, "##0.0 %")),

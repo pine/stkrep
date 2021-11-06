@@ -4,7 +4,7 @@ import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import com.google.api.services.sheets.v4.model.TextFormat;
 import moe.pine.stkrep.format.FormattedText;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.sheets.mapper.Mapper;
 
 import java.util.function.Function;

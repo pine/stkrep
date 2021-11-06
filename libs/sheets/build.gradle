@@ -1,6 +1,6 @@
 dependencies {
     // Sub-projects
-    implementation project(':lib-format')
+    implementation project(':lib-report')
 
     // Spring Framework
     implementation 'org.springframework.boot:spring-boot-starter-web'

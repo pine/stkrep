@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets;
+package moe.pine.stkrep.report;
 
 import moe.pine.stkrep.format.FormattedText;
 
@@ -12,13 +12,13 @@ public record Forecast(
         FormattedText level,
         FormattedText rating,
         FormattedText forecastByAnalyst,
-        FormattedText forecastByPer,
         FormattedText forecastByPbr,
+        FormattedText forecastByPer,
         double per,
         double pbr,
-        double dividendYield,
         double roa,
         double roe,
+        double dividendYield,
         double equityRatio
 ) {
 }

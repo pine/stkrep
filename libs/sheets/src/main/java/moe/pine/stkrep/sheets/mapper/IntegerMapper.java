@@ -4,9 +4,8 @@ import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import com.google.api.services.sheets.v4.model.NumberFormat;
 import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.sheets.Forecast;
+import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.sheets.internal.BaseStyler;
-import moe.pine.stkrep.sheets.mapper.Mapper;
 
 import java.util.function.Function;
 
