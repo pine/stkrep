@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ForegroundColor implements Color {
-    BLACK("000000"),
-    RED("ea4335"),
-    GREEN("34a853"),
+    BLACK("#000000"),
+    RED("#ea4335"),
+    GREEN("#34a853"),
     ;
 
     private final ColorDelegate delegate;
