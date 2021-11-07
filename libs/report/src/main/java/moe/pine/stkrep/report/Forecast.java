@@ -3,6 +3,10 @@ package moe.pine.stkrep.report;
 import moe.pine.stkrep.format.FormattedText;
 import moe.pine.stkrep.report.text.TrendSignal;
 
+/**
+ * @param marketCapitalization 時価総額
+ * @param trendSignal          トレンドシグナル
+ */
 public record Forecast(
         int code,
         String uri,
