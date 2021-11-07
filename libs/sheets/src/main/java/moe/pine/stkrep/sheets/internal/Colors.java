@@ -11,4 +11,11 @@ public class Colors {
                 .setGreen(awtColor.getGreen() / 255f)
                 .setBlue(awtColor.getBlue() / 255f);
     }
+
+    public Color of(moe.pine.stkrep.report.color.Color color) {
+        return new Color()
+                .setRed(color.getRed())
+                .setGreen(color.getGreen())
+                .setBlue(color.getBlue());
+    }
 }

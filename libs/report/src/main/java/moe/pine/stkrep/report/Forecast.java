@@ -1,6 +1,7 @@
 package moe.pine.stkrep.report;
 
 import moe.pine.stkrep.format.FormattedText;
+import moe.pine.stkrep.report.text.TrendSignal;
 
 public record Forecast(
         int code,

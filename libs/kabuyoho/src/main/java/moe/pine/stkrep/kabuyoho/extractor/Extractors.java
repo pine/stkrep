@@ -5,7 +5,7 @@ import moe.pine.stkrep.format.FormattedText;
 import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
-import moe.pine.stkrep.report.TrendSignal;
+import moe.pine.stkrep.report.text.TrendSignal;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -16,11 +16,11 @@ public class Extractors {
     public static final Extractor<Integer> MARKET_CAPITALIZATION = new SummaryBoxIntegerExtractor("時価総額");
     public static final Extractor<TrendSignal> SIGNAL_EXTRACTOR =
             new KarteEnumExtractor<>("今日のシグナル", TrendSignal.class);
-    public static final Extractor<FormattedText> LEVEL_EXTRACTOR = new KarteExtractor("水準");
-    public static final Extractor<FormattedText> RATING_EXTRACTOR = new KarteExtractor("レーティング");
-    public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteExtractor("目標株価");
-    public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteExtractor("PBR基準");
-    public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteExtractor("PER基準");
+    public static final Extractor<FormattedText> LEVEL_EXTRACTOR = new KarteStringExtractor("水準");
+    public static final Extractor<FormattedText> RATING_EXTRACTOR = new KarteStringExtractor("レーティング");
+    public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteStringExtractor("目標株価");
+    public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteStringExtractor("PBR基準");
+    public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteStringExtractor("PER基準");
     public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
     public static final Extractor<Double> PBR_YIELD = new SummaryBoxDoubleExtractor("PBR");
     public static final Extractor<Double> DIVIDEND_YIELD =
