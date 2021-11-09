@@ -1,6 +1,7 @@
 package moe.pine.stkrep.report;
 
 import moe.pine.stkrep.format.FormattedText;
+import moe.pine.stkrep.report.text.RiskOn;
 import moe.pine.stkrep.report.text.TrendSignal;
 
 /**
@@ -14,7 +15,7 @@ public record Forecast(
         int price,
         int marketCapitalization,
         TrendSignal trendSignal,
-        FormattedText level,
+        RiskOn riskOn,
         FormattedText rating,
         FormattedText forecastByAnalyst,
         FormattedText forecastByPbr,

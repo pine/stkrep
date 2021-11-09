@@ -2,9 +2,10 @@ package moe.pine.stkrep.kabuyoho.extractor;
 
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.format.FormattedText;
-import moe.pine.stkrep.report.Forecast;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
+import moe.pine.stkrep.report.Forecast;
+import moe.pine.stkrep.report.text.RiskOn;
 import moe.pine.stkrep.report.text.TrendSignal;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +17,8 @@ public class Extractors {
     public static final Extractor<Integer> MARKET_CAPITALIZATION = new SummaryBoxIntegerExtractor("時価総額");
     public static final Extractor<TrendSignal> SIGNAL_EXTRACTOR =
             new KarteEnumExtractor<>("今日のシグナル", TrendSignal.class);
-    public static final Extractor<FormattedText> LEVEL_EXTRACTOR = new KarteStringExtractor("水準");
+    public static final Extractor<RiskOn> LEVEL_EXTRACTOR =
+            new KarteEnumExtractor<>("水準", RiskOn.class);
     public static final Extractor<FormattedText> RATING_EXTRACTOR = new KarteStringExtractor("レーティング");
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteStringExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteStringExtractor("PBR基準");

@@ -14,7 +14,7 @@ public enum Column {
     PRICE(new IntegerMapper(Forecast::price, "###,###,### \"円\"")),
     MARKET_CAPITALIZATION(new IntegerMapper(Forecast::marketCapitalization, "###,###,### \"億円\"")),
     SIGNAL(new TextEnumMapper(Forecast::trendSignal)),
-    LEVEL(new FormattedTextMapper(Forecast::level)),
+    RISK_ON(new TextEnumMapper(Forecast::riskOn)),
     RATING(new FormattedTextMapper(Forecast::rating)),
     FORECAST_BY_ANALYST(new FormattedTextMapper(Forecast::forecastByAnalyst)),
     FORECAST_BY_PBR(new FormattedTextMapper(Forecast::forecastByPbr)),
