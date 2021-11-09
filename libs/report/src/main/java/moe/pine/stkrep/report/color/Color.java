@@ -6,4 +6,6 @@ public interface Color {
     float getGreen();
 
     float getBlue();
+
+    float getAlpha();
 }

@@ -16,6 +16,7 @@ public class Colors {
         return new Color()
                 .setRed(color.getRed())
                 .setGreen(color.getGreen())
-                .setBlue(color.getBlue());
+                .setBlue(color.getBlue())
+                .setAlpha(color.getAlpha());
     }
 }

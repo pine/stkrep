@@ -31,4 +31,9 @@ public enum ForegroundColor implements Color {
     public float getBlue() {
         return delegate.getBlue();
     }
+
+    @Override
+    public float getAlpha() {
+        return delegate.getAlpha();
+    }
 }
