@@ -13,15 +13,15 @@ public interface TextEnum {
 
     Color getColor();
 
-    static <E extends Enum<E> & TextEnum> E getEnum(Class<E> clazz, String text) {
+    static <E extends Enum<E> & TextEnum> E getEnum(Class<E> clazz, String inputText) {
         final List<E> values = EnumUtils.getEnumList(clazz);
         for (E value : values) {
-            if (value.getInputTexts().contains(text)) {
+            if (value.getInputTexts().contains(inputText)) {
                 return value;
             }
         }
 
         throw new IllegalArgumentException(
-                String.format("Enum not found. [clazz=%s, text=%s]", clazz, text));
+                String.format("Enum not found. [clazz=%s, input-text=%s]", clazz, inputText));
     }
 }

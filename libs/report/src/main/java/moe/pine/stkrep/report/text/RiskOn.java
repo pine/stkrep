@@ -8,6 +8,9 @@ import moe.pine.stkrep.report.color.ForegroundColor;
 
 import java.util.Set;
 
+/**
+ * リスクオン相対指数
+ */
 @Getter
 @RequiredArgsConstructor
 @SuppressFBWarnings("EI_EXPOSE_REP")
