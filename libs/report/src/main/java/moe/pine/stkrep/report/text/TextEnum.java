@@ -4,20 +4,19 @@ import moe.pine.stkrep.report.color.Color;
 import org.apache.commons.lang3.EnumUtils;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TextEnum {
-    String getInputText();
+    Set<String> getInputTexts();
 
-    default String getOutputText() {
-        return getInputText();
-    }
+    String getOutputText();
 
     Color getColor();
 
     static <E extends Enum<E> & TextEnum> E getEnum(Class<E> clazz, String text) {
         final List<E> values = EnumUtils.getEnumList(clazz);
         for (E value : values) {
-            if (value.getInputText().equals(text)) {
+            if (value.getInputTexts().contains(text)) {
                 return value;
             }
         }
