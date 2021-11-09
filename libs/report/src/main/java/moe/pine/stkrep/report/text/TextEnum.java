@@ -6,14 +6,18 @@ import org.apache.commons.lang3.EnumUtils;
 import java.util.List;
 
 public interface TextEnum {
-    String getText();
+    String getInputText();
+
+    default String getOutputText() {
+        return getInputText();
+    }
 
     Color getColor();
 
     static <E extends Enum<E> & TextEnum> E getEnum(Class<E> clazz, String text) {
         final List<E> values = EnumUtils.getEnumList(clazz);
         for (E value : values) {
-            if (value.getText().equals(text)) {
+            if (value.getInputText().equals(text)) {
                 return value;
             }
         }

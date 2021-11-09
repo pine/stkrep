@@ -20,6 +20,6 @@ public enum TrendSignal implements TextEnum {
     public static final Set<TrendSignal> BUY = Set.of(BUY_CHANGED, CONTINUE_BUY);
     public static final Set<TrendSignal> SELL = Set.of(SELL_CHANGED, CONTINUE_SELL);
 
-    private final String text;
+    private final String inputText;
     private final Color color;
 }

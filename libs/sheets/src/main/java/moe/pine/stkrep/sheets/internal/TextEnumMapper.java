@@ -14,7 +14,7 @@ public record TextEnumMapper(
 ) implements Mapper {
     @Override
     public ExtendedValue mapValue(Forecast forecast) {
-        return new ExtendedValue().setStringValue(selector.apply(forecast).getText());
+        return new ExtendedValue().setStringValue(selector.apply(forecast).getOutputText());
     }
 
 
