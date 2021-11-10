@@ -15,7 +15,7 @@ public class ColorDelegate implements Color, Serializable {
     float blue;
     float alpha;
 
-    public static ColorDelegate of(String hex) {
+    public static ColorDelegate decode(String hex) {
         final java.awt.Color color = java.awt.Color.decode(hex);
         return new ColorDelegate(
                 color.getRed() / 255f,

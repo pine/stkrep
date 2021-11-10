@@ -14,7 +14,7 @@ public enum ForegroundColor implements Color {
     private final ColorDelegate delegate;
 
     ForegroundColor(String hex) {
-        this(ColorDelegate.of(hex));
+        this(ColorDelegate.decode(hex));
     }
 
     @Override

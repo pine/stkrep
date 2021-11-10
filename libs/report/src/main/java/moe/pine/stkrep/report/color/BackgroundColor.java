@@ -12,7 +12,7 @@ public enum BackgroundColor implements Color {
     private final ColorDelegate delegate;
 
     BackgroundColor(String hex) {
-        this(ColorDelegate.of(hex));
+        this(ColorDelegate.decode(hex));
     }
 
     @Override
