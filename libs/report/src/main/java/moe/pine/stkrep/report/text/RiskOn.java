@@ -16,8 +16,8 @@ import java.util.Set;
 @SuppressFBWarnings("EI_EXPOSE_REP")
 public enum RiskOn implements TextEnum {
     BOTTOM_PRICE_ZONE(Set.of("底値圏突入"), "底値圏突入", ForegroundColor.RED),
-    NEUTRAL(Set.of("--", ""), "", ForegroundColor.BLACK),
     HIGH_PRICE_ZONE(Set.of("高値圏警戒"), "高値圏警戒", ForegroundColor.GREEN),
+    NA(Set.of("--", ""), "", ForegroundColor.BLACK),
     ;
 
     private final Set<String> inputTexts;
