@@ -5,6 +5,7 @@ import moe.pine.stkrep.format.FormattedText;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
 import moe.pine.stkrep.report.Forecast;
+import moe.pine.stkrep.report.text.Rating;
 import moe.pine.stkrep.report.text.RiskOn;
 import moe.pine.stkrep.report.text.TrendSignal;
 import org.jsoup.Jsoup;
@@ -19,7 +20,8 @@ public class Extractors {
             new KarteEnumExtractor<>("今日のシグナル", TrendSignal.class);
     public static final Extractor<RiskOn> LEVEL_EXTRACTOR =
             new KarteEnumExtractor<>("水準", RiskOn.class);
-    public static final Extractor<FormattedText> RATING_EXTRACTOR = new KarteStringExtractor("レーティング");
+    public static final Extractor<Rating> RATING_EXTRACTOR =
+            new KarteEnumExtractor<>("レーティング", Rating.class);
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteStringExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteStringExtractor("PBR基準");
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteStringExtractor("PER基準");
