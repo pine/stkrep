@@ -21,7 +21,7 @@ public class Extractors {
     public static final Extractor<RiskOn> LEVEL_EXTRACTOR =
             new KarteEnumExtractor<>("水準", RiskOn.class);
     public static final Extractor<Rating> RATING_EXTRACTOR =
-            new KarteEnumExtractor<>("レーティング", Rating.class);
+            new KarteEnumExtractor<>("レーティング", TextRange.SECOND_SPAN, Rating.class);
     public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteStringExtractor("目標株価");
     public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteStringExtractor("PBR基準");
     public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteStringExtractor("PER基準");

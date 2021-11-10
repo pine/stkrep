@@ -10,6 +10,11 @@ public class KarteEnumExtractor<E extends Enum<E> & TextEnum> extends KarteExtra
         this.clazz = clazz;
     }
 
+    public KarteEnumExtractor(String title, TextRange textRange, Class<E> clazz) {
+        super(title, textRange);
+        this.clazz = clazz;
+    }
+
     @Override
     public E onExtract(String text) {
         return TextEnum.getEnum(clazz, text);

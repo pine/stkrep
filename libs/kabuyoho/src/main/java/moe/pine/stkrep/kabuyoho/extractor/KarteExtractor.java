@@ -4,10 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 @RequiredArgsConstructor
 public abstract class KarteExtractor<T> implements Extractor<T> {
     private final String title;
+    private final TextRange textRange;
+
+    public KarteExtractor(String title) {
+        this(title, TextRange.ALL);
+    }
 
     @Override
     public T extract(Document document) {
@@ -17,7 +23,12 @@ public abstract class KarteExtractor<T> implements Extractor<T> {
             return onExtract(StringUtils.EMPTY);
         }
 
-        return onExtract(element.text());
+        final Elements spanElements = element.select("span");
+        return switch (textRange) {
+            case ALL -> onExtract(element.text());
+            case FIRST_SPAN -> onExtract(spanElements.eq(0).text());
+            case SECOND_SPAN -> onExtract(spanElements.eq(1).text());
+        };
     }
 
     protected abstract T onExtract(String text);
