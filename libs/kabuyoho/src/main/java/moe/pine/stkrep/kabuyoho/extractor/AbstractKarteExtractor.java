@@ -7,11 +7,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 @RequiredArgsConstructor
-public abstract class KarteExtractor<T> implements Extractor<T> {
+public abstract class AbstractKarteExtractor<T> implements Extractor<T> {
     private final String title;
     private final TextRange textRange;
 
-    public KarteExtractor(String title) {
+    public AbstractKarteExtractor(String title) {
         this(title, TextRange.ALL);
     }
 

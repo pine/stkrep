@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.format.BackgroundColors;
 import moe.pine.stkrep.format.ForegroundColors;
 import moe.pine.stkrep.report.Report;
-import moe.pine.stkrep.report.text.Rating;
-import moe.pine.stkrep.report.text.RiskOn;
-import moe.pine.stkrep.report.text.TrendSignal;
+import moe.pine.stkrep.report.item.Rating;
+import moe.pine.stkrep.report.item.RiskOn;
+import moe.pine.stkrep.report.item.TrendSignal;
 
 @RequiredArgsConstructor
 public class BaseStyler {
@@ -38,9 +38,9 @@ public class BaseStyler {
         final boolean lowLevel = report.riskOn() == RiskOn.BOTTOM_PRICE_ZONE;
         final boolean lowRating = Rating.SELL.contains(report.rating());
         final boolean lowPriceForecast =
-                ForegroundColors.RED.equals(report.forecastByAnalyst().color()) ||
-                        ForegroundColors.RED.equals(report.forecastByPbr().color()) ||
-                        ForegroundColors.RED.equals(report.forecastByPer().color());
+                ForegroundColors.RED.equals(report.priceByAnalyst().color()) ||
+                        ForegroundColors.RED.equals(report.priceByPbr().color()) ||
+                        ForegroundColors.RED.equals(report.priceByPer().color());
 
         return isBuy && lowLevel && !lowRating && lowPriceForecast;
     }

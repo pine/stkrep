@@ -1,4 +1,4 @@
-package moe.pine.stkrep.report.text;
+package moe.pine.stkrep.report.item;
 
 import moe.pine.stkrep.report.color.Color;
 import org.apache.commons.lang3.EnumUtils;

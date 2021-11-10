@@ -1,32 +1,40 @@
 package moe.pine.stkrep.kabuyoho.extractor;
 
 import lombok.extern.slf4j.Slf4j;
-import moe.pine.stkrep.format.FormattedText;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
 import moe.pine.stkrep.report.Report;
-import moe.pine.stkrep.report.text.Rating;
-import moe.pine.stkrep.report.text.RiskOn;
-import moe.pine.stkrep.report.text.TrendSignal;
+import moe.pine.stkrep.report.item.Rating;
+import moe.pine.stkrep.report.item.RiskOn;
+import moe.pine.stkrep.report.item.StockPrice;
+import moe.pine.stkrep.report.item.TrendSignal;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 @Slf4j
 public class Extractors {
-    public static final Extractor<String> NAME_EXTRACTOR = new SummaryNameExtractor(0);
-    public static final Extractor<Integer> PRICE_EXTRACTOR = new SummaryBoxIntegerExtractor("株価");
-    public static final Extractor<Integer> MARKET_CAPITALIZATION = new SummaryBoxIntegerExtractor("時価総額");
+    public static final Extractor<String> NAME_EXTRACTOR =
+            new SummaryNameExtractor(0);
+    public static final Extractor<Integer> PRICE_EXTRACTOR =
+            new SummaryBoxIntegerExtractor("株価");
+    public static final Extractor<Integer> MARKET_CAPITALIZATION =
+            new SummaryBoxIntegerExtractor("時価総額");
     public static final Extractor<TrendSignal> SIGNAL_EXTRACTOR =
             new KarteEnumExtractor<>("今日のシグナル", TrendSignal.class);
     public static final Extractor<RiskOn> LEVEL_EXTRACTOR =
             new KarteEnumExtractor<>("水準", RiskOn.class);
     public static final Extractor<Rating> RATING_EXTRACTOR =
             new KarteEnumExtractor<>("レーティング", TextRange.SECOND_SPAN, Rating.class);
-    public static final Extractor<FormattedText> FORECAST_BY_ANALYST_EXTRACTOR = new KarteStringExtractor("目標株価");
-    public static final Extractor<FormattedText> FORECAST_BY_PBR_EXTRACTOR = new KarteStringExtractor("PBR基準");
-    public static final Extractor<FormattedText> FORECAST_BY_PER_EXTRACTOR = new KarteStringExtractor("PER基準");
-    public static final Extractor<Double> PER_YIELD = new SummaryBoxDoubleExtractor("PER");
-    public static final Extractor<Double> PBR_YIELD = new SummaryBoxDoubleExtractor("PBR");
+    public static final Extractor<StockPrice> PRICE_BY_ANALYST_EXTRACTOR =
+            new KarteEnumExtractor<>("目標株価", StockPrice.class);
+    public static final Extractor<StockPrice> PRICE_BY_PBR_EXTRACTOR =
+            new KarteEnumExtractor<>("PBR基準", StockPrice.class);
+    public static final Extractor<StockPrice> PRICE_BY_PER_EXTRACTOR =
+            new KarteEnumExtractor<>("PER基準", StockPrice.class);
+    public static final Extractor<Double> PER_YIELD =
+            new SummaryBoxDoubleExtractor("PER");
+    public static final Extractor<Double> PBR_YIELD =
+            new SummaryBoxDoubleExtractor("PBR");
     public static final Extractor<Double> DIVIDEND_YIELD =
             new SummaryBoxDoubleExtractor("配当利回り", DoubleCalculator.HUNDREDTH_DIVIDER);
     public static final Extractor<Double> ROA =
@@ -50,9 +58,9 @@ public class Extractors {
                 SIGNAL_EXTRACTOR.extract(document),
                 LEVEL_EXTRACTOR.extract(document),
                 RATING_EXTRACTOR.extract(document),
-                FORECAST_BY_ANALYST_EXTRACTOR.extract(document),
-                FORECAST_BY_PBR_EXTRACTOR.extract(document),
-                FORECAST_BY_PER_EXTRACTOR.extract(document),
+                PRICE_BY_ANALYST_EXTRACTOR.extract(document),
+                PRICE_BY_PBR_EXTRACTOR.extract(document),
+                PRICE_BY_PER_EXTRACTOR.extract(document),
                 PER_YIELD.extract(document),
                 PBR_YIELD.extract(document),
                 DIVIDEND_YIELD.extract(document),

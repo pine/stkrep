@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 @RequiredArgsConstructor
-public abstract class SummaryBoxExtractor<T> implements Extractor<T> {
+public abstract class AbstractSummaryBoxExtractor<T> implements Extractor<T> {
     private final String title;
 
     @Override

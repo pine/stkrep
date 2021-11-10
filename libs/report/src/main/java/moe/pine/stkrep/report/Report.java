@@ -1,9 +1,9 @@
 package moe.pine.stkrep.report;
 
-import moe.pine.stkrep.format.FormattedText;
-import moe.pine.stkrep.report.text.Rating;
-import moe.pine.stkrep.report.text.RiskOn;
-import moe.pine.stkrep.report.text.TrendSignal;
+import moe.pine.stkrep.report.item.Rating;
+import moe.pine.stkrep.report.item.RiskOn;
+import moe.pine.stkrep.report.item.StockPrice;
+import moe.pine.stkrep.report.item.TrendSignal;
 
 /**
  * @param marketCapitalization 時価総額
@@ -18,9 +18,9 @@ public record Report(
         TrendSignal trendSignal,
         RiskOn riskOn,
         Rating rating,
-        FormattedText forecastByAnalyst,
-        FormattedText forecastByPbr,
-        FormattedText forecastByPer,
+        StockPrice priceByAnalyst,
+        StockPrice priceByPbr,
+        StockPrice priceByPer,
         double per,
         double pbr,
         double roa,
