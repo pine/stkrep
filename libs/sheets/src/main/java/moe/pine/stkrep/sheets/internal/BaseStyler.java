@@ -37,12 +37,8 @@ public class BaseStyler {
         final boolean isBuy = TrendSignal.BUY.contains(report.trendSignal());
         final boolean lowLevel = report.riskOn() == RiskOn.BOTTOM_PRICE_ZONE;
         final boolean lowRating = Rating.SELL.contains(report.rating());
-        final boolean lowPriceForecast =
-                ForegroundColors.RED.equals(report.priceByAnalyst().color()) ||
-                        ForegroundColors.RED.equals(report.priceByPbr().color()) ||
-                        ForegroundColors.RED.equals(report.priceByPer().color());
 
-        return isBuy && lowLevel && !lowRating && lowPriceForecast;
+        return isBuy && lowLevel && !lowRating;
     }
 }
 

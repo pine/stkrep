@@ -1,5 +1,6 @@
 package moe.pine.stkrep.report.item;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.report.color.Color;
@@ -12,6 +13,7 @@ import java.util.Set;
  */
 @Getter
 @RequiredArgsConstructor
+@SuppressFBWarnings("EI_EXPOSE_REP")
 public enum StockPrice implements TextEnum {
     UNDERVALUED(Set.of("割安"), "割安", ForegroundColor.RED),
     SLIGHTLY_UNDERVALUED(Set.of("やや割安"), "やや割安", ForegroundColor.RED),
