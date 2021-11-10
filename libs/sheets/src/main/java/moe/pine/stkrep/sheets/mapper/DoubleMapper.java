@@ -4,19 +4,19 @@ import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import com.google.api.services.sheets.v4.model.NumberFormat;
 import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.report.Forecast;
+import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.sheets.internal.BaseStyler;
 
 import java.util.function.Function;
 
 @RequiredArgsConstructor
 public class DoubleMapper implements Mapper {
-    private final Function<Forecast, Double> selector;
+    private final Function<Report, Double> selector;
     private final String pattern;
 
     @Override
-    public ExtendedValue mapValue(Forecast forecast) {
-        final Double value = selector.apply(forecast);
+    public ExtendedValue mapValue(Report report) {
+        final Double value = selector.apply(report);
         if (value == null || Double.isNaN(value)) {
             return new ExtendedValue().setNumberValue(null);
         }
@@ -25,7 +25,7 @@ public class DoubleMapper implements Mapper {
     }
 
     @Override
-    public CellFormat mapFormat(BaseStyler styler, Forecast forecast) {
+    public CellFormat mapFormat(BaseStyler styler, Report report) {
         return styler.cellFormat()
                 .setNumberFormat(new NumberFormat()
                         .setType("NUMBER")

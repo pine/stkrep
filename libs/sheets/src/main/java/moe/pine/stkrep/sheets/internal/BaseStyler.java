@@ -6,14 +6,14 @@ import com.google.common.annotations.VisibleForTesting;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.format.BackgroundColors;
 import moe.pine.stkrep.format.ForegroundColors;
-import moe.pine.stkrep.report.Forecast;
+import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.report.text.Rating;
 import moe.pine.stkrep.report.text.RiskOn;
 import moe.pine.stkrep.report.text.TrendSignal;
 
 @RequiredArgsConstructor
 public class BaseStyler {
-    private final Forecast forecast;
+    private final Report report;
 
     public CellFormat cellFormat() {
         final CellFormat cellFormat = new CellFormat()
@@ -34,13 +34,13 @@ public class BaseStyler {
 
     @VisibleForTesting
     boolean isHighlighted() {
-        final boolean isBuy = TrendSignal.BUY.contains(forecast.trendSignal());
-        final boolean lowLevel = forecast.riskOn() == RiskOn.BOTTOM_PRICE_ZONE;
-        final boolean lowRating = Rating.SELL.contains(forecast.rating());
+        final boolean isBuy = TrendSignal.BUY.contains(report.trendSignal());
+        final boolean lowLevel = report.riskOn() == RiskOn.BOTTOM_PRICE_ZONE;
+        final boolean lowRating = Rating.SELL.contains(report.rating());
         final boolean lowPriceForecast =
-                ForegroundColors.RED.equals(forecast.forecastByAnalyst().color()) ||
-                        ForegroundColors.RED.equals(forecast.forecastByPbr().color()) ||
-                        ForegroundColors.RED.equals(forecast.forecastByPer().color());
+                ForegroundColors.RED.equals(report.forecastByAnalyst().color()) ||
+                        ForegroundColors.RED.equals(report.forecastByPbr().color()) ||
+                        ForegroundColors.RED.equals(report.forecastByPer().color());
 
         return isBuy && lowLevel && !lowRating && lowPriceForecast;
     }

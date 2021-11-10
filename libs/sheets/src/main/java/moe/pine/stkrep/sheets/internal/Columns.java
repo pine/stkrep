@@ -3,7 +3,7 @@ package moe.pine.stkrep.sheets.internal;
 import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.RowData;
 import lombok.experimental.UtilityClass;
-import moe.pine.stkrep.report.Forecast;
+import moe.pine.stkrep.report.Report;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,9 +14,9 @@ public class Columns {
     public static final int MAX_NUMBER_OF_COLUMNS = 1_000;
 
     public List<RowData> collectRows(
-            List<Forecast> forecasts
+            List<Report> reports
     ) {
-        return forecasts.stream()
+        return reports.stream()
                 .map(forecast -> {
                     final List<CellData> cells =
                             Stream.of(Column.values())

@@ -9,7 +9,7 @@ import moe.pine.stkrep.report.text.TrendSignal;
  * @param marketCapitalization 時価総額
  * @param trendSignal          トレンドシグナル
  */
-public record Forecast(
+public record Report(
         int code,
         String uri,
         String name,
