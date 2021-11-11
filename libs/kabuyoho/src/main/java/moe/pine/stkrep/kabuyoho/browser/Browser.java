@@ -36,7 +36,7 @@ public class Browser {
                 log.warn(msg, e);
                 throw new RetryableException(msg, e);
             } catch (RuntimeException e) {
-                final String msg = String.format("Failed to execute. [retry-count=%d]", ctx.getRetryCount());
+                final String msg = String.format("Gave up on the execution. [retry-count=%d]", ctx.getRetryCount());
                 log.error(msg, e);
                 throw new NonRetryableException(msg, e);
             }
