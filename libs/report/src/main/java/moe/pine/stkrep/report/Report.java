@@ -8,6 +8,8 @@ import moe.pine.stkrep.report.item.TrendSignal;
 /**
  * @param marketCapitalization 時価総額
  * @param trendSignal          トレンドシグナル
+ * @param riskOn               リスクオン相対指数
+ * @param rating               レーティング
  */
 public record Report(
         int code,
@@ -23,9 +25,9 @@ public record Report(
         StockPrice priceByPer,
         double per,
         double pbr,
+        double dividendYield,
         double roa,
         double roe,
-        double dividendYield,
         double equityRatio
 ) {
 }
