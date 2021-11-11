@@ -1,5 +1,7 @@
 package moe.pine.stkrep.kabuyoho.calculator;
 
+import java.util.Objects;
+
 public enum DoubleCalculator implements Calculator<Double> {
     NONE {
         @Override
@@ -17,6 +19,8 @@ public enum DoubleCalculator implements Calculator<Double> {
 
     @Override
     public Double calculate(Double value) {
+        Objects.requireNonNull(value, "value");
+
         if (Double.isNaN(value)) {
             return value;
         }
