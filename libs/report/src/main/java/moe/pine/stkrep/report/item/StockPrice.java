@@ -17,7 +17,7 @@ import java.util.Set;
 public enum StockPrice implements TextEnum {
     UNDERVALUED(Set.of("割安"), "割安", ForegroundColor.RED),
     SLIGHTLY_UNDERVALUED(Set.of("やや割安"), "やや割安", ForegroundColor.RED),
-    REASONABLE(Set.of("妥当水準"), "妥当水準", ForegroundColor.RED),
+    REASONABLE(Set.of("妥当水準"), "妥当水準", ForegroundColor.BLACK),
     SLIGHTLY_OVERVALUED(Set.of("やや割高"), "やや割高", ForegroundColor.GREEN),
     OVERVALUED(Set.of("割高"), "割高", ForegroundColor.GREEN),
     NA(Set.of(""), "", ForegroundColor.BLACK),
