@@ -4,9 +4,9 @@ import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.TextFormat;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.format.BackgroundColors;
-import moe.pine.stkrep.format.ForegroundColors;
 import moe.pine.stkrep.report.Report;
+import moe.pine.stkrep.report.color.BackgroundColor;
+import moe.pine.stkrep.report.color.ForegroundColor;
 import moe.pine.stkrep.report.item.Rating;
 import moe.pine.stkrep.report.item.RiskOn;
 import moe.pine.stkrep.report.item.TrendSignal;
@@ -20,7 +20,7 @@ public class BaseStyler {
                 .setTextFormat(textFormat());
 
         if (isHighlighted()) {
-            cellFormat.setBackgroundColor(Colors.of(BackgroundColors.YELLOW));
+            cellFormat.setBackgroundColor(Colors.of(BackgroundColor.YELLOW));
         }
 
         return cellFormat;
@@ -28,7 +28,7 @@ public class BaseStyler {
 
     public TextFormat textFormat() {
         return new TextFormat()
-                .setForegroundColor(Colors.of(ForegroundColors.BLACK))
+                .setForegroundColor(Colors.of(ForegroundColor.BLACK))
                 .setBold(isHighlighted());
     }
 
