@@ -10,6 +10,7 @@ import moe.pine.stkrep.report.color.ForegroundColor;
 import moe.pine.stkrep.report.item.Rating;
 import moe.pine.stkrep.report.item.RiskOn;
 import moe.pine.stkrep.report.item.TrendSignal;
+import moe.pine.stkrep.sheets.cell.SheetsColors;
 
 @RequiredArgsConstructor
 public class BaseStyler {
@@ -20,7 +21,7 @@ public class BaseStyler {
                 .setTextFormat(textFormat());
 
         if (isHighlighted()) {
-            cellFormat.setBackgroundColor(Colors.of(BackgroundColor.YELLOW));
+            cellFormat.setBackgroundColor(SheetsColors.of(BackgroundColor.YELLOW));
         }
 
         return cellFormat;
@@ -28,7 +29,7 @@ public class BaseStyler {
 
     public TextFormat textFormat() {
         return new TextFormat()
-                .setForegroundColor(Colors.of(ForegroundColor.BLACK))
+                .setForegroundColor(SheetsColors.of(ForegroundColor.BLACK))
                 .setBold(isHighlighted());
     }
 
