@@ -11,7 +11,7 @@ import com.google.auth.Credentials;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import lombok.experimental.UtilityClass;
-import moe.pine.stkrep.sheets.internal.NonRetryableException;
+import moe.pine.stkrep.sheets.exception.NonRetryableException;
 
 import java.io.IOException;
 import java.io.InputStream;

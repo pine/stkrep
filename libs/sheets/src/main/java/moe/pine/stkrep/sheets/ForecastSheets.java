@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.sheets.internal.Columns;
-import moe.pine.stkrep.sheets.internal.RetryableException;
+import moe.pine.stkrep.sheets.exception.RetryableException;
 import moe.pine.stkrep.sheets.internal.SheetsFactory;
 import org.apache.commons.lang3.math.NumberUtils;
 

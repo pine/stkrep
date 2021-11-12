@@ -1,4 +1,4 @@
-package moe.pine.stkrep.sheets.internal;
+package moe.pine.stkrep.sheets.exception;
 
 import java.io.Serial;
 
