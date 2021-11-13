@@ -1,6 +1,7 @@
 package moe.pine.stkrep.sheets.cell;
 
 import com.google.api.services.sheets.v4.model.CellFormat;
+import com.google.api.services.sheets.v4.model.NumberFormat;
 import com.google.api.services.sheets.v4.model.TextFormat;
 import moe.pine.stkrep.report.color.Color;
 import org.springframework.lang.Nullable;
@@ -10,23 +11,44 @@ public class DefaultFormatBuilder implements FormatBuilder {
     private Color backgroundColor;
 
     @Nullable
-    private Color foregroundColor;
+    private Color textForegroundColor;
 
     @Nullable
-    private Boolean bold;
+    private Boolean textBold;
 
-    public DefaultFormatBuilder backgroundColor(Color color) {
+    @Nullable
+    private String numberFormatType;
+
+    @Nullable
+    private String numberFormatPattern;
+
+    @Override
+    public FormatBuilder backgroundColor(@Nullable Color color) {
         backgroundColor = color;
         return this;
     }
 
-    public DefaultFormatBuilder foregroundColor(Color color) {
-        foregroundColor = color;
+    @Override
+    public FormatBuilder textForegroundColor(@Nullable Color color) {
+        textForegroundColor = color;
         return this;
     }
 
-    public DefaultFormatBuilder bold(Boolean bold) {
-        this.bold = bold;
+    @Override
+    public FormatBuilder textBold(@Nullable Boolean bold) {
+        textBold = bold;
+        return this;
+    }
+
+    @Override
+    public FormatBuilder numberFormatType(@Nullable String type) {
+        numberFormatType = type;
+        return this;
+    }
+
+    @Override
+    public FormatBuilder numberFormatPattern(@Nullable String pattern) {
+        numberFormatPattern = pattern;
         return this;
     }
 
@@ -34,9 +56,13 @@ public class DefaultFormatBuilder implements FormatBuilder {
     public CellFormat build() {
         return new CellFormat()
                 .setBackgroundColor(SheetsColors.ofNullable(backgroundColor))
+                .setNumberFormat(
+                        new NumberFormat()
+                                .setType(numberFormatType)
+                                .setPattern(numberFormatPattern))
                 .setTextFormat(
                         new TextFormat()
-                                .setForegroundColor(SheetsColors.ofNullable(foregroundColor))
-                                .setBold(bold));
+                                .setForegroundColor(SheetsColors.ofNullable(textForegroundColor))
+                                .setBold(textBold));
     }
 }

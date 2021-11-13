@@ -4,7 +4,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.Kabuyoho;
-import moe.pine.stkrep.report.Report;
+import moe.pine.stkrep.report.ForecastReport;
 import moe.pine.stkrep.sheets.ForecastSheets;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.retry.annotation.Retryable;
@@ -28,12 +28,12 @@ public class ForecastJob {
         final List<Integer> codes = forecastSheets.getCodes();
         log.info("Fetched codes from spreadsheets: {}", forecastSheets.getCodes());
 
-        final List<Report> reports =
+        final List<ForecastReport> reports =
                 codes.stream()
                         .map(kabuyoho::find)
                         .toList();
 
-        final List<String> names = reports.stream().map(Report::name).toList();
+        final List<String> names = reports.stream().map(ForecastReport::name).toList();
         log.info("Collected forecasts: {}", names);
 
         forecastSheets.updateResult(reports);

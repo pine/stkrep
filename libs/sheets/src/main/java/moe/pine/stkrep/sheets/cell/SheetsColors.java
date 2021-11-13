@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 import java.util.Objects;
 
 @UtilityClass
+@SuppressWarnings("PMD.ReturnEmptyCollectionRatherThanNull")
 public class SheetsColors {
     public Color of(moe.pine.stkrep.report.color.Color color) {
         Objects.requireNonNull(color, "color");

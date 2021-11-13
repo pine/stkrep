@@ -1,15 +1,16 @@
 package moe.pine.stkrep.sheets.cell;
 
 import com.google.api.services.sheets.v4.model.ExtendedValue;
+import org.springframework.lang.Nullable;
 
 public interface ValueBuilder {
-    ValueBuilder boolValue(Boolean boolValue);
+    ValueBuilder boolValue(@Nullable Boolean boolValue);
 
-    ValueBuilder formulaValue(String formulaValue);
+    ValueBuilder formulaValue(@Nullable String formulaValue);
 
-    ValueBuilder numberValue(Double numberValue);
+    ValueBuilder numberValue(@Nullable Double numberValue);
 
-    ValueBuilder stringValue(String stringValue);
+    ValueBuilder stringValue(@Nullable String stringValue);
 
     ExtendedValue build();
 }

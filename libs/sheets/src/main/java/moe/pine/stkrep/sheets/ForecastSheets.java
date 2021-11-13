@@ -16,7 +16,7 @@ import com.google.common.annotations.VisibleForTesting;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import moe.pine.stkrep.report.Report;
+import moe.pine.stkrep.report.ForecastReport;
 import moe.pine.stkrep.sheets.internal.Columns;
 import moe.pine.stkrep.sheets.exception.RetryableException;
 import moe.pine.stkrep.sheets.internal.SheetsFactory;
@@ -84,7 +84,7 @@ public class ForecastSheets {
                 .toList();
     }
 
-    public void updateResult(List<Report> reports) {
+    public void updateResult(List<ForecastReport> reports) {
         final int resultSheetId = getResultSheetId();
 
         clearWithNoRetry();
@@ -151,7 +151,7 @@ public class ForecastSheets {
     @VisibleForTesting
     void updateResultWithNoRetry(
             int resultSheetId,
-            List<Report> reports
+            List<ForecastReport> reports
     ) {
         log.debug("Start updating the result in the spreadsheet. " +
                         "[spreadsheet-id={}, result-sheet-id={}, result-offset-y={}]",

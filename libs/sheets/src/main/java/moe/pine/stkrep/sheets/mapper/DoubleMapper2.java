@@ -4,14 +4,14 @@ import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.sheets.cell.FormatBuilder;
-import moe.pine.stkrep.sheets.cell.Formatter;
 import moe.pine.stkrep.sheets.cell.ValueBuilder;
 
-public class IntegerMapper2<R extends Report> extends AbstractMapper<R, Integer> {
+
+public class DoubleMapper2<R extends Report> extends AbstractMapper<R, Double> {
     private final String pattern;
 
-    public IntegerMapper2(
-            Selector<R, Integer> selector,
+    public DoubleMapper2(
+            Selector<R, Double> selector,
             String pattern
     ) {
         super(selector);
@@ -19,16 +19,16 @@ public class IntegerMapper2<R extends Report> extends AbstractMapper<R, Integer>
     }
 
     @Override
-    protected ExtendedValue buildValue(Integer item, ValueBuilder builder) {
-        if (item == null || item == 0) {
+    protected ExtendedValue buildValue(Double value, ValueBuilder builder) {
+        if (value == null || Double.isNaN(value)) {
             return builder.build();
         }
 
-        return builder.numberValue(item.doubleValue()).build();
+        return builder.numberValue(value).build();
     }
 
     @Override
-    protected CellFormat buildFormat(Integer item, FormatBuilder builder) {
+    protected CellFormat buildFormat(Double value, FormatBuilder builder) {
         return builder.numberFormatType("NUMBER")
                 .numberFormatPattern(pattern)
                 .build();

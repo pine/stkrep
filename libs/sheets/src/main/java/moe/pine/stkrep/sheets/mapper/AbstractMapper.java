@@ -4,29 +4,35 @@ import com.google.api.services.sheets.v4.model.CellData;
 import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import lombok.RequiredArgsConstructor;
+import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.sheets.cell.DefaultFormatBuilder;
+import moe.pine.stkrep.sheets.cell.DefaultFormatter;
 import moe.pine.stkrep.sheets.cell.DefaultValueBuilder;
 import moe.pine.stkrep.sheets.cell.FormatBuilder;
 import moe.pine.stkrep.sheets.cell.Formatter;
 import moe.pine.stkrep.sheets.cell.ValueBuilder;
 
 @RequiredArgsConstructor
-public abstract class AbstractMapper<R, I> implements Mapper2<R> {
-    private final Selector<R, I> selector;
+public abstract class AbstractMapper<R extends Report, V> implements Mapper2<R> {
+    private final Selector<R, V> selector;
     private final Formatter<R> initialFormatter;
+
+    public AbstractMapper(Selector<R, V> selector) {
+        this(selector, new DefaultFormatter<>());
+    }
 
     @Override
     public CellData map(R report) {
         final FormatBuilder formatBuilder = new DefaultFormatBuilder();
         initialFormatter.run(report, formatBuilder);
 
-        final I item = selector.select(report);
+        final V value = selector.select(report);
         return new CellData()
-                .setUserEnteredValue(onCreateValue(item, new DefaultValueBuilder()))
-                .setUserEnteredFormat(onCreateFormat(item, formatBuilder));
+                .setUserEnteredValue(buildValue(value, new DefaultValueBuilder()))
+                .setUserEnteredFormat(buildFormat(value, formatBuilder));
     }
 
-    protected abstract ExtendedValue onCreateValue(I item, ValueBuilder builder);
+    protected abstract ExtendedValue buildValue(V value, ValueBuilder builder);
 
-    protected abstract CellFormat onCreateFormat(I item, FormatBuilder builder);
+    protected abstract CellFormat buildFormat(V value, FormatBuilder builder);
 }

@@ -136,7 +136,7 @@ allprojects {
     apply plugin: 'pmd'
 
     pmd {
-        toolVersion = '6.35.0'
+        toolVersion = '6.40.0'
         consoleOutput = true
         ruleSetFiles = rootProject.files("config/pmd-ruleset.xml")
         ruleSets = []

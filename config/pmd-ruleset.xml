@@ -5,6 +5,7 @@
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
     <rule ref="category/java/errorprone.xml">
+        <exclude name="AvoidFieldNameMatchingMethodName"/>
         <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="BeanMembersShouldSerialize"/>
     </rule>

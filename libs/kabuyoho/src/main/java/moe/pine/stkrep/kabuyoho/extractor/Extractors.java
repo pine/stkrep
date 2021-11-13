@@ -3,7 +3,7 @@ package moe.pine.stkrep.kabuyoho.extractor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
-import moe.pine.stkrep.report.Report;
+import moe.pine.stkrep.report.ForecastReport;
 import moe.pine.stkrep.report.item.Rating;
 import moe.pine.stkrep.report.item.RiskOn;
 import moe.pine.stkrep.report.item.StockPrice;
@@ -44,12 +44,12 @@ public class Extractors {
     public static final Extractor<Double> EQUITY_RATIO =
             new SummaryBoxDoubleExtractor("自己資本比率", DoubleCalculator.HUNDREDTH_DIVIDER);
 
-    public Report extract(
+    public ForecastReport extract(
             BrowsingResults browsingResults
     ) {
         final Document document = Jsoup.parse(browsingResults.body());
 
-        return new Report(
+        return new ForecastReport(
                 browsingResults.code(),
                 browsingResults.uri(),
                 NAME_EXTRACTOR.extract(document),

@@ -1,12 +1,13 @@
 package moe.pine.stkrep.sheets.cell;
 
 import com.google.api.services.sheets.v4.model.ExtendedValue;
+import org.springframework.lang.Nullable;
 
 public class DefaultValueBuilder implements ValueBuilder {
     private final ExtendedValue value = new ExtendedValue();
 
     @Override
-    public ValueBuilder boolValue(Boolean boolValue) {
+    public ValueBuilder boolValue(@Nullable Boolean boolValue) {
         value.setBoolValue(boolValue);
         value.setFormulaValue(null);
         value.setNumberValue(null);
@@ -15,7 +16,7 @@ public class DefaultValueBuilder implements ValueBuilder {
     }
 
     @Override
-    public ValueBuilder formulaValue(String formulaValue) {
+    public ValueBuilder formulaValue(@Nullable String formulaValue) {
         value.setBoolValue(null);
         value.setFormulaValue(formulaValue);
         value.setNumberValue(null);
@@ -24,7 +25,7 @@ public class DefaultValueBuilder implements ValueBuilder {
     }
 
     @Override
-    public ValueBuilder numberValue(Double numberValue) {
+    public ValueBuilder numberValue(@Nullable Double numberValue) {
         value.setBoolValue(null);
         value.setFormulaValue(null);
         value.setNumberValue(numberValue);
@@ -33,7 +34,7 @@ public class DefaultValueBuilder implements ValueBuilder {
     }
 
     @Override
-    public ValueBuilder stringValue(String stringValue) {
+    public ValueBuilder stringValue(@Nullable String stringValue) {
         value.setBoolValue(null);
         value.setFormulaValue(null);
         value.setNumberValue(null);

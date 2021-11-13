@@ -4,7 +4,7 @@ import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.TextFormat;
 import com.google.common.annotations.VisibleForTesting;
 import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.report.Report;
+import moe.pine.stkrep.report.ForecastReport;
 import moe.pine.stkrep.report.color.BackgroundColor;
 import moe.pine.stkrep.report.color.ForegroundColor;
 import moe.pine.stkrep.report.item.Rating;
@@ -14,7 +14,7 @@ import moe.pine.stkrep.sheets.cell.SheetsColors;
 
 @RequiredArgsConstructor
 public class BaseStyler {
-    private final Report report;
+    private final ForecastReport report;
 
     public CellFormat cellFormat() {
         final CellFormat cellFormat = new CellFormat()
