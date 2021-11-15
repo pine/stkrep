@@ -17,7 +17,7 @@ public abstract class AbstractMapper<R extends Report, V> implements Mapper2<R> 
     private final Selector<R, V> selector;
     private final Formatter<R> initialFormatter;
 
-    public AbstractMapper(Selector<R, V> selector) {
+    protected AbstractMapper(Selector<R, V> selector) {
         this(selector, new DefaultFormatter<>());
     }
 
