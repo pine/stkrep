@@ -13,12 +13,12 @@ public class TextEnumMapper2<R extends Report> extends AbstractMapper<R, TextEnu
     }
 
     @Override
-    protected ExtendedValue buildValue(TextEnum value, ValueBuilder builder) {
+    protected ExtendedValue onCreateValue(TextEnum value, ValueBuilder builder) {
         return builder.stringValue(value.getOutputText()).build();
     }
 
     @Override
-    protected CellFormat buildFormat(TextEnum value, FormatBuilder builder) {
+    protected CellFormat onCreateFormat(TextEnum value, FormatBuilder builder) {
         return builder.textForegroundColor(value.getColor()).build();
     }
 }

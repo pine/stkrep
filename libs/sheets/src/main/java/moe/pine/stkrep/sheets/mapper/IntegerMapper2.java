@@ -19,7 +19,7 @@ public class IntegerMapper2<R extends Report> extends AbstractMapper<R, Integer>
     }
 
     @Override
-    protected ExtendedValue buildValue(Integer item, ValueBuilder builder) {
+    protected ExtendedValue onCreateValue(Integer item, ValueBuilder builder) {
         if (item == null || item == 0) {
             return builder.build();
         }
@@ -28,7 +28,7 @@ public class IntegerMapper2<R extends Report> extends AbstractMapper<R, Integer>
     }
 
     @Override
-    protected CellFormat buildFormat(Integer item, FormatBuilder builder) {
+    protected CellFormat onCreateFormat(Integer item, FormatBuilder builder) {
         return builder.numberFormatType("NUMBER")
                 .numberFormatPattern(pattern)
                 .build();

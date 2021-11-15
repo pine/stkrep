@@ -19,7 +19,7 @@ public class DoubleMapper2<R extends Report> extends AbstractMapper<R, Double> {
     }
 
     @Override
-    protected ExtendedValue buildValue(Double value, ValueBuilder builder) {
+    protected ExtendedValue onCreateValue(Double value, ValueBuilder builder) {
         if (value == null || Double.isNaN(value)) {
             return builder.build();
         }
@@ -28,7 +28,7 @@ public class DoubleMapper2<R extends Report> extends AbstractMapper<R, Double> {
     }
 
     @Override
-    protected CellFormat buildFormat(Double value, FormatBuilder builder) {
+    protected CellFormat onCreateFormat(Double value, FormatBuilder builder) {
         return builder.numberFormatType("NUMBER")
                 .numberFormatPattern(pattern)
                 .build();

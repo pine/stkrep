@@ -28,11 +28,11 @@ public abstract class AbstractMapper<R extends Report, V> implements Mapper2<R> 
 
         final V value = selector.select(report);
         return new CellData()
-                .setUserEnteredValue(buildValue(value, new DefaultValueBuilder()))
-                .setUserEnteredFormat(buildFormat(value, formatBuilder));
+                .setUserEnteredValue(onCreateValue(value, new DefaultValueBuilder()))
+                .setUserEnteredFormat(onCreateFormat(value, formatBuilder));
     }
 
-    protected abstract ExtendedValue buildValue(V value, ValueBuilder builder);
+    protected abstract ExtendedValue onCreateValue(V value, ValueBuilder builder);
 
-    protected abstract CellFormat buildFormat(V value, FormatBuilder builder);
+    protected abstract CellFormat onCreateFormat(V value, FormatBuilder builder);
 }

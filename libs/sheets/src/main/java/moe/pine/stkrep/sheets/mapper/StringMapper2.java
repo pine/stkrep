@@ -12,12 +12,12 @@ public class StringMapper2<R extends Report> extends AbstractMapper<R, String> {
     }
 
     @Override
-    protected ExtendedValue buildValue(String value, ValueBuilder builder) {
+    protected ExtendedValue onCreateValue(String value, ValueBuilder builder) {
         return builder.stringValue(value).build();
     }
 
     @Override
-    protected CellFormat buildFormat(String value, FormatBuilder builder) {
+    protected CellFormat onCreateFormat(String value, FormatBuilder builder) {
         return builder.build();
     }
 }
