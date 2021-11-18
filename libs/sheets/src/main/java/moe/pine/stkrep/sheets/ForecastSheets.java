@@ -35,11 +35,11 @@ import java.util.List;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class ForecastSheets {
     private final Sheets sheets;
-    private final ForecastSheetsArguments args;
+    private final ForecastSheetsDetails details;
 
     public static ForecastSheets create(
             InputStream credentialsStream,
-            ForecastSheetsArguments args
+            ForecastSheetsDetails args
     ) {
         final Sheets sheets = SheetsFactory.create(args.applicationName(), credentialsStream);
         return new ForecastSheets(sheets, args);
@@ -57,23 +57,23 @@ public class ForecastSheets {
     @VisibleForTesting
     List<Integer> getCodesWithNoRetry() {
         log.debug("Start getting the values. [spreadsheet-id={}, codes-range={}]",
-                args.spreadsheetId(), args.codesRange());
+                details.spreadsheetId(), details.codesRange());
 
         final ValueRange valueRange;
         try {
             valueRange = sheets.spreadsheets()
                     .values()
-                    .get(args.spreadsheetId(), args.codesRange())
+                    .get(details.spreadsheetId(), details.codesRange())
                     .execute();
         } catch (IOException e) {
             throw new RetryableException(
                     String.format("Unable to get values from spreadsheets. [spreadsheet-id=%s, codes-range=%s]",
-                            args.spreadsheetId(), args.codesRange()), e);
+                            details.spreadsheetId(), details.codesRange()), e);
         }
 
         final List<List<Object>> values = valueRange.getValues();
         log.debug("Finished getting the values. [spreadsheet-id={}, codes-range={}, values={}]",
-                args.spreadsheetId(), args.codesRange(), values);
+                details.spreadsheetId(), details.codesRange(), values);
 
 
         return values.stream()
@@ -94,31 +94,31 @@ public class ForecastSheets {
     @VisibleForTesting
     int getResultSheetId() {
         log.debug("Start getting the result sheet ID. [spreadsheet-id={}, sheet-title={}]",
-                args.spreadsheetId(), args.resultSheetTitle());
+                details.spreadsheetId(), details.resultSheetTitle());
 
         final Spreadsheet spreadsheet;
         try {
             spreadsheet =
                     sheets.spreadsheets()
-                            .get(args.spreadsheetId())
+                            .get(details.spreadsheetId())
                             .setIncludeGridData(false)
                             .execute();
         } catch (IOException e) {
             throw new RetryableException(
                     String.format("Unable to get the spreadsheet. [spreadsheet-id=%s]",
-                            args.spreadsheetId()), e);
+                            details.spreadsheetId()), e);
         }
 
         final int resultSheetId = spreadsheet.getSheets()
                 .stream()
                 .map(Sheet::getProperties)
-                .filter(v -> v.getTitle().equals(args.resultSheetTitle()))
+                .filter(v -> v.getTitle().equals(details.resultSheetTitle()))
                 .map(SheetProperties::getSheetId)
                 .findFirst()
                 .orElseThrow(() -> new RetryableException("Unable to find the result sheet ID."));
 
         log.debug("Finished getting the result sheet ID. [spreadsheet-id={},  sheet-title={}, result-sheet-id={}]",
-                args.spreadsheetId(), args.resultSheetTitle(), resultSheetId);
+                details.spreadsheetId(), details.resultSheetTitle(), resultSheetId);
 
         return resultSheetId;
     }
@@ -126,26 +126,26 @@ public class ForecastSheets {
     @VisibleForTesting
     void clearWithNoRetry() {
         final String range =
-                String.format("%s!R%dC1:C%d", args.resultSheetTitle(),
-                        args.resultOffsetY() + 1, Column.MAX_NUMBER_OF_COLUMNS);
+                String.format("%s!R%dC1:C%d", details.resultSheetTitle(),
+                        details.resultOffsetY() + 1, Column.MAX_NUMBER_OF_COLUMNS);
 
-        log.debug("Start clearing values. [spreadsheet-id={}], range={}]", args.spreadsheetId(), range);
+        log.debug("Start clearing values. [spreadsheet-id={}], range={}]", details.spreadsheetId(), range);
 
         final ClearValuesResponse clearValuesResponse;
         try {
             clearValuesResponse =
                     sheets.spreadsheets()
                             .values()
-                            .clear(args.spreadsheetId(), range, new ClearValuesRequest())
+                            .clear(details.spreadsheetId(), range, new ClearValuesRequest())
                             .execute();
         } catch (IOException e) {
             throw new RetryableException(
                     String.format("Unable to clear values. [spreadsheet-id=%s, range=%s]",
-                            args.spreadsheetId(), range), e);
+                            details.spreadsheetId(), range), e);
         }
 
         log.debug("Finished clearing values. [spreadsheet-id={}], range={}, response={}]",
-                args.spreadsheetId(), range, clearValuesResponse);
+                details.spreadsheetId(), range, clearValuesResponse);
     }
 
     @VisibleForTesting
@@ -155,7 +155,7 @@ public class ForecastSheets {
     ) {
         log.debug("Start updating the result in the spreadsheet. " +
                         "[spreadsheet-id={}, result-sheet-id={}, result-offset-y={}]",
-                args.spreadsheetId(), resultSheetId, args.resultOffsetY());
+                details.spreadsheetId(), resultSheetId, details.resultOffsetY());
 
         final List<RowData> rows = Column.collect(reports, ForecastColumn.class);
         final UpdateCellsRequest updateCellsRequest = new UpdateCellsRequest()
@@ -163,7 +163,7 @@ public class ForecastSheets {
                 .setRows(rows)
                 .setStart(new GridCoordinate()
                         .setSheetId(resultSheetId)
-                        .setRowIndex(args.resultOffsetY())
+                        .setRowIndex(details.resultOffsetY())
                         .setColumnIndex(0));
 
         final Request request = new Request().setUpdateCells(updateCellsRequest);
@@ -172,7 +172,7 @@ public class ForecastSheets {
 
         try {
             sheets.spreadsheets()
-                    .batchUpdate(args.spreadsheetId(), batchUpdateSpreadsheetRequest)
+                    .batchUpdate(details.spreadsheetId(), batchUpdateSpreadsheetRequest)
                     .execute();
         } catch (IOException e) {
             throw new RuntimeException(e);

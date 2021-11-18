@@ -2,7 +2,7 @@ package moe.pine.stkrep.config;
 
 import moe.pine.stkrep.properties.SheetsProperties;
 import moe.pine.stkrep.sheets.ForecastSheets;
-import moe.pine.stkrep.sheets.ForecastSheetsArguments;
+import moe.pine.stkrep.sheets.ForecastSheetsDetails;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +20,8 @@ public class SheetsConfig {
             SheetsProperties sheetsProperties
     ) throws IOException {
         final Resource resource = resourceLoader.getResource(sheetsProperties.credentialsPath());
-        final ForecastSheetsArguments args =
-                new ForecastSheetsArguments(
+        final ForecastSheetsDetails details =
+                new ForecastSheetsDetails(
                         sheetsProperties.applicationName(),
                         sheetsProperties.forecastSheets().spreadsheetId(),
                         sheetsProperties.forecastSheets().codesRange(),
@@ -29,6 +29,6 @@ public class SheetsConfig {
                         sheetsProperties.forecastSheets().resultOffsetY()
                 );
 
-        return ForecastSheets.create(resource.getInputStream(), args);
+        return ForecastSheets.create(resource.getInputStream(), details);
     }
 }

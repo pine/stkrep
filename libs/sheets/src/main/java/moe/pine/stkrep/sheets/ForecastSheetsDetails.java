@@ -1,6 +1,6 @@
 package moe.pine.stkrep.sheets;
 
-public record ForecastSheetsArguments(
+public record ForecastSheetsDetails(
         String applicationName,
         String spreadsheetId,
         String codesRange,
