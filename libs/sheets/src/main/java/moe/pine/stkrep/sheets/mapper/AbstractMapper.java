@@ -6,7 +6,6 @@ import com.google.api.services.sheets.v4.model.ExtendedValue;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.sheets.cell.DefaultFormatBuilder;
-import moe.pine.stkrep.sheets.cell.DefaultFormatter;
 import moe.pine.stkrep.sheets.cell.DefaultValueBuilder;
 import moe.pine.stkrep.sheets.cell.FormatBuilder;
 import moe.pine.stkrep.sheets.cell.Formatter;
@@ -18,7 +17,7 @@ public abstract class AbstractMapper<R extends Report, V> implements Mapper<R> {
     private final Formatter<R> initialFormatter;
 
     protected AbstractMapper(Selector<R, V> selector) {
-        this(selector, new DefaultFormatter<>());
+        this(selector, Formatter.of());
     }
 
     @Override
