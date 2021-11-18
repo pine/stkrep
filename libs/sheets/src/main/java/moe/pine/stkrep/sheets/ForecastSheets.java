@@ -17,9 +17,9 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.report.ForecastReport;
-import moe.pine.stkrep.sheets.internal.Columns;
+import moe.pine.stkrep.sheets.column.Column;
+import moe.pine.stkrep.sheets.column.ForecastColumn;
 import moe.pine.stkrep.sheets.exception.RetryableException;
-import moe.pine.stkrep.sheets.internal.SheetsFactory;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
@@ -127,7 +127,7 @@ public class ForecastSheets {
     void clearWithNoRetry() {
         final String range =
                 String.format("%s!R%dC1:C%d", args.resultSheetTitle(),
-                        args.resultOffsetY() + 1, Columns.MAX_NUMBER_OF_COLUMNS);
+                        args.resultOffsetY() + 1, Column.MAX_NUMBER_OF_COLUMNS);
 
         log.debug("Start clearing values. [spreadsheet-id={}], range={}]", args.spreadsheetId(), range);
 
@@ -157,7 +157,7 @@ public class ForecastSheets {
                         "[spreadsheet-id={}, result-sheet-id={}, result-offset-y={}]",
                 args.spreadsheetId(), resultSheetId, args.resultOffsetY());
 
-        final List<RowData> rows = Columns.collectRows(reports);
+        final List<RowData> rows = Column.collect(reports, ForecastColumn.class);
         final UpdateCellsRequest updateCellsRequest = new UpdateCellsRequest()
                 .setFields("*")
                 .setRows(rows)

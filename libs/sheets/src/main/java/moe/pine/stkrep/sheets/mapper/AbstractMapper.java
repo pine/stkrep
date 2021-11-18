@@ -13,7 +13,7 @@ import moe.pine.stkrep.sheets.cell.Formatter;
 import moe.pine.stkrep.sheets.cell.ValueBuilder;
 
 @RequiredArgsConstructor
-public abstract class AbstractMapper<R extends Report, V> implements Mapper2<R> {
+public abstract class AbstractMapper<R extends Report, V> implements Mapper<R> {
     private final Selector<R, V> selector;
     private final Formatter<R> initialFormatter;
 

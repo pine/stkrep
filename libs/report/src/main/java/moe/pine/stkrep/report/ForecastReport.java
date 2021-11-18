@@ -32,6 +32,6 @@ public record ForecastReport(
 ) implements Report {
     @Override
     public boolean isHighlighted() {
-        return false;
+        return TrendSignal.BUY.contains(trendSignal) && riskOn == RiskOn.BOTTOM_PRICE_ZONE;
     }
 }

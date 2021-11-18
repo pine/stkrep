@@ -2,29 +2,23 @@ package moe.pine.stkrep.sheets.mapper;
 
 import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
-import com.google.api.services.sheets.v4.model.TextFormat;
-import moe.pine.stkrep.report.ForecastReport;
+import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.report.item.TextEnum;
-import moe.pine.stkrep.sheets.cell.SheetsColors;
-import moe.pine.stkrep.sheets.internal.BaseStyler;
+import moe.pine.stkrep.sheets.cell.FormatBuilder;
+import moe.pine.stkrep.sheets.cell.ValueBuilder;
 
-import java.util.function.Function;
-
-public record TextEnumMapper(
-        Function<ForecastReport, TextEnum> selector
-) implements Mapper {
-    @Override
-    public ExtendedValue mapValue(ForecastReport report) {
-        return new ExtendedValue().setStringValue(selector.apply(report).getOutputText());
+public class TextEnumMapper<R extends Report> extends AbstractMapper<R, TextEnum> {
+    public TextEnumMapper(Selector<R, TextEnum> selector) {
+        super(selector);
     }
 
+    @Override
+    protected ExtendedValue onCreateValue(TextEnum value, ValueBuilder builder) {
+        return builder.stringValue(value.getOutputText()).build();
+    }
 
     @Override
-    public CellFormat mapFormat(BaseStyler baseStyler, ForecastReport report) {
-        final TextEnum textEnum = selector.apply(report);
-        final TextFormat textFormat = baseStyler.textFormat()
-                .setForegroundColor(SheetsColors.of(textEnum.getColor()));
-
-        return baseStyler.cellFormat().setTextFormat(textFormat);
+    protected CellFormat onCreateFormat(TextEnum value, FormatBuilder builder) {
+        return builder.textForegroundColor(value.getColor()).build();
     }
 }

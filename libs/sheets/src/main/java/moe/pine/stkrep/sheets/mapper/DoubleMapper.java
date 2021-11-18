@@ -2,33 +2,35 @@ package moe.pine.stkrep.sheets.mapper;
 
 import com.google.api.services.sheets.v4.model.CellFormat;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
-import com.google.api.services.sheets.v4.model.NumberFormat;
-import lombok.RequiredArgsConstructor;
-import moe.pine.stkrep.report.ForecastReport;
-import moe.pine.stkrep.sheets.internal.BaseStyler;
+import moe.pine.stkrep.report.Report;
+import moe.pine.stkrep.sheets.cell.FormatBuilder;
+import moe.pine.stkrep.sheets.cell.ValueBuilder;
 
-import java.util.function.Function;
 
-@RequiredArgsConstructor
-public class DoubleMapper implements Mapper {
-    private final Function<ForecastReport, Double> selector;
+public class DoubleMapper<R extends Report> extends AbstractMapper<R, Double> {
     private final String pattern;
 
-    @Override
-    public ExtendedValue mapValue(ForecastReport report) {
-        final Double value = selector.apply(report);
-        if (value == null || Double.isNaN(value)) {
-            return new ExtendedValue().setNumberValue(null);
-        }
-
-        return new ExtendedValue().setNumberValue(value);
+    public DoubleMapper(
+            Selector<R, Double> selector,
+            String pattern
+    ) {
+        super(selector);
+        this.pattern = pattern;
     }
 
     @Override
-    public CellFormat mapFormat(BaseStyler styler, ForecastReport report) {
-        return styler.cellFormat()
-                .setNumberFormat(new NumberFormat()
-                        .setType("NUMBER")
-                        .setPattern(pattern));
+    protected ExtendedValue onCreateValue(Double value, ValueBuilder builder) {
+        if (value == null || Double.isNaN(value)) {
+            return builder.build();
+        }
+
+        return builder.numberValue(value).build();
+    }
+
+    @Override
+    protected CellFormat onCreateFormat(Double value, FormatBuilder builder) {
+        return builder.numberFormatType("NUMBER")
+                .numberFormatPattern(pattern)
+                .build();
     }
 }

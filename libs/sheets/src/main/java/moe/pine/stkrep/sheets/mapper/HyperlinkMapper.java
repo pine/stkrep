@@ -6,14 +6,22 @@ import moe.pine.stkrep.report.Report;
 import moe.pine.stkrep.sheets.cell.FormatBuilder;
 import moe.pine.stkrep.sheets.cell.ValueBuilder;
 
-public class StringMapper2<R extends Report> extends AbstractMapper<R, String> {
-    public StringMapper2(Selector<R, String> selector) {
+
+public class HyperlinkMapper<R extends Report> extends AbstractMapper<R, String> {
+    private final String friendlyName;
+
+    public HyperlinkMapper(
+            Selector<R, String> selector,
+            String friendlyName
+    ) {
         super(selector);
+        this.friendlyName = friendlyName;
     }
 
     @Override
     protected ExtendedValue onCreateValue(String value, ValueBuilder builder) {
-        return builder.stringValue(value).build();
+        final String formula = String.format("=HYPERLINK(\"%s\", \"%s\")", value, friendlyName);
+        return builder.formulaValue(formula).build();
     }
 
     @Override
