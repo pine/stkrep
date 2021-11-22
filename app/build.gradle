@@ -5,6 +5,7 @@ dependencies {
     implementation project(':lib-sheets')
     implementation project(':lib-kabuyoho')
     implementation project(':lib-report')
+    implementation project(':lib-ua')
 
     // Spring Framework
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
