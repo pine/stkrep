@@ -1,4 +1,4 @@
-package moe.pine.stkrep.report.item;
+package moe.pine.stkrep.report.value;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;

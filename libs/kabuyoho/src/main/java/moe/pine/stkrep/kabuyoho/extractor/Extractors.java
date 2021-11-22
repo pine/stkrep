@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import moe.pine.stkrep.kabuyoho.browser.BrowsingResults;
 import moe.pine.stkrep.kabuyoho.calculator.DoubleCalculator;
 import moe.pine.stkrep.report.ForecastReport;
-import moe.pine.stkrep.report.item.Rating;
-import moe.pine.stkrep.report.item.RiskOn;
-import moe.pine.stkrep.report.item.StockPrice;
-import moe.pine.stkrep.report.item.TrendSignal;
+import moe.pine.stkrep.report.value.Rating;
+import moe.pine.stkrep.report.value.RiskOn;
+import moe.pine.stkrep.report.value.StockPrice;
+import moe.pine.stkrep.report.value.TrendSignal;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 

@@ -1,4 +1,4 @@
-package moe.pine.stkrep.report.item;
+package moe.pine.stkrep.report.value;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
@@ -9,14 +9,17 @@ import moe.pine.stkrep.report.color.ForegroundColor;
 import java.util.Set;
 
 /**
- * リスクオン相対指数
+ * 目標株価
  */
 @Getter
 @RequiredArgsConstructor
 @SuppressFBWarnings("EI_EXPOSE_REP")
-public enum RiskOn implements TextEnum {
-    BOTTOM_PRICE_ZONE(Set.of("底値圏突入"), "底値圏突入", ForegroundColor.RED),
-    HIGH_PRICE_ZONE(Set.of("高値圏警戒"), "高値圏警戒", ForegroundColor.GREEN),
+public enum StockPrice implements TextEnum {
+    UNDERVALUED(Set.of("割安"), "割安", ForegroundColor.RED),
+    SLIGHTLY_UNDERVALUED(Set.of("やや割安"), "やや割安", ForegroundColor.RED),
+    REASONABLE(Set.of("妥当水準"), "妥当水準", ForegroundColor.BLACK),
+    SLIGHTLY_OVERVALUED(Set.of("やや割高"), "やや割高", ForegroundColor.GREEN),
+    OVERVALUED(Set.of("割高"), "割高", ForegroundColor.GREEN),
     NA(Set.of("--", ""), "", ForegroundColor.BLACK),
     ;
 

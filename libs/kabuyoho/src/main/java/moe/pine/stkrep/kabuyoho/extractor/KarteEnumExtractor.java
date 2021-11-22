@@ -1,6 +1,6 @@
 package moe.pine.stkrep.kabuyoho.extractor;
 
-import moe.pine.stkrep.report.item.TextEnum;
+import moe.pine.stkrep.report.value.TextEnum;
 
 public class KarteEnumExtractor<E extends Enum<E> & TextEnum> extends AbstractKarteExtractor<E> {
     private final Class<E> clazz;

@@ -3,7 +3,7 @@ package moe.pine.stkrep.sheets.column;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import moe.pine.stkrep.report.ForecastReport;
-import moe.pine.stkrep.report.item.Hyperlinks;
+import moe.pine.stkrep.report.value.Hyperlinks;
 import moe.pine.stkrep.sheets.mapper.DoubleMapper;
 import moe.pine.stkrep.sheets.mapper.HyperlinkMapper;
 import moe.pine.stkrep.sheets.mapper.IntegerMapper;

@@ -1,9 +1,9 @@
 package moe.pine.stkrep.report;
 
-import moe.pine.stkrep.report.item.Rating;
-import moe.pine.stkrep.report.item.RiskOn;
-import moe.pine.stkrep.report.item.StockPrice;
-import moe.pine.stkrep.report.item.TrendSignal;
+import moe.pine.stkrep.report.value.Rating;
+import moe.pine.stkrep.report.value.RiskOn;
+import moe.pine.stkrep.report.value.StockPrice;
+import moe.pine.stkrep.report.value.TrendSignal;
 
 /**
  * @param marketCapitalization 時価総額
