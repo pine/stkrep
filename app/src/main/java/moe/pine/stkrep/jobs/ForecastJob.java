@@ -32,13 +32,15 @@ public class ForecastJob {
         final List<ForecastReport> reports =
                 codes.stream()
                         .map(code -> {
+                            final ForecastReport report = kabuyoho.find(code);
                             try {
                                 Thread.sleep(ACCESS_INTERVAL.toMillis());
                             } catch (InterruptedException e) {
                                 Thread.currentThread().interrupt();
                                 throw new RuntimeException(e);
                             }
-                            return kabuyoho.find(code);
+
+                            return report;
                         })
                         .toList();
 
