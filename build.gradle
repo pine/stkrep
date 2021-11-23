@@ -70,6 +70,7 @@ allprojects {
             // Apache Commons
             dependency 'org.apache.commons:commons-lang3:3.8.1'
             dependency 'org.apache.commons:commons-collections4:4.3'
+            dependency 'org.apache.commons:commons-math3:3.6.1'
 
             // Spotbugs
             dependency "com.github.spotbugs:spotbugs-annotations:$spotbugsVersion"

@@ -5,9 +5,11 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.pine.reactor.interruptible.MonoUtils;
+import moe.pine.stkrep.kabuyoho.UserAgentSupplier;
 import moe.pine.stkrep.kabuyoho.exception.NonRetryableException;
 import moe.pine.stkrep.kabuyoho.exception.RetryableException;
 import moe.pine.stkrep.retry.RetryTemplateFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -22,12 +24,14 @@ public class Browser {
 
     private final WebClient webClient;
     private final RetryTemplate retryTemplate;
+    private final UserAgentSupplier userAgentSupplier;
 
-    public Browser() {
-        this(WebClient.builder()
-                        .defaultHeader("User-Agent", USER_AGENT)
-                        .build(),
-                RetryTemplateFactory.create(10, 1000, 2.0, RetryableException.class));
+    public Browser(
+            UserAgentSupplier userAgentSupplier
+    ) {
+        this(WebClient.create(),
+                RetryTemplateFactory.create(10, 1000, 2.0, RetryableException.class),
+                userAgentSupplier);
     }
 
     public BrowsingResults browse(int code) {
@@ -52,7 +56,11 @@ public class Browser {
         final String body;
         try {
             body = MonoUtils.blockOptional(
-                            webClient.get().uri(uri).retrieve().bodyToMono(String.class),
+                            webClient.get()
+                                    .uri(uri)
+                                    .header(HttpHeaders.USER_AGENT, userAgentSupplier.get())
+                                    .retrieve()
+                                    .bodyToMono(String.class),
                             BLOCK_TIMEOUT)
                     .orElseThrow(() -> new IllegalStateException("Mono.empty returned."));
         } catch (RuntimeException e) {
