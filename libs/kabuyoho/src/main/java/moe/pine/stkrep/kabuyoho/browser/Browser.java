@@ -19,7 +19,6 @@ import java.time.Duration;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class Browser {
     private static final String BASE_URL = "https://kabuyoho.jp/reportTop?bcode=";
-    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 Edg/81.0.416.72";
     private static final Duration BLOCK_TIMEOUT = Duration.ofSeconds(60L);
 
     private final WebClient webClient;
