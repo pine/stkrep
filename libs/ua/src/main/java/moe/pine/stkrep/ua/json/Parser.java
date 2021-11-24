@@ -17,7 +17,7 @@ public class Parser {
 
     public List<UserAgent> parse(InputStream stream) {
         try {
-            return OBJECT_MAPPER.readValue(stream, new TypeReference<List<UserAgent>>() {
+            return OBJECT_MAPPER.readValue(stream, new TypeReference<>() {
             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
