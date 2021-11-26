@@ -7,6 +7,7 @@ import org.apache.commons.math3.distribution.EnumeratedDistribution;
 import org.apache.commons.math3.util.Pair;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * User agent collector
@@ -19,6 +20,8 @@ public class DefaultCommonUserAgents implements CommonUserAgents {
     private final EnumeratedDistribution<String> sampler;
 
     public DefaultCommonUserAgents(List<UserAgent> userAgents) {
+        Objects.requireNonNull(userAgents, "userAgents");
+
         final List<Pair<String, Double>> pmf =
                 userAgents.stream()
                         .map(userAgent -> {
