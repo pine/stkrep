@@ -2,6 +2,13 @@
 
 :bar_chart: Daily stocks reporter
 
+## Requirements
+- Java 17
+
+## Libraries
+- Spring Boot 2
+- jsoup
+
 ## Development
 
 ### Deployment
