@@ -1,6 +1,6 @@
 # stkrep
 
-Information aggregation tool for stocks
+:bar_chart: Daily stocks reporter
 
 ## Development
 
