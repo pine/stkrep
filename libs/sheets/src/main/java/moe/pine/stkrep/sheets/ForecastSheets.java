@@ -29,6 +29,10 @@ import java.util.List;
 
 
 /**
+ * Spreadsheets for forecast
+ *
+ * @see <a href="https://note.com/npaka/n/nd522e980d995">GCP 入門 (18) - Google Sheets API</a>
+ * @see <a href="https://developers.google.com/sheets/api/guides/concepts">Google Sheets API Overview | Google Developers</a>
  * @see <a href="https://developers.google.com/sheets/api/quickstart/java">Java Quickstart | Sheets API | Google Developers</a>
  */
 @Slf4j
@@ -39,10 +43,10 @@ public class ForecastSheets {
 
     public static ForecastSheets create(
             InputStream credentialsStream,
-            ForecastSheetsDetails args
+            ForecastSheetsDetails details
     ) {
-        final Sheets sheets = SheetsFactory.create(args.applicationName(), credentialsStream);
-        return new ForecastSheets(sheets, args);
+        final Sheets sheets = SheetsFactory.create(details.applicationName(), credentialsStream);
+        return new ForecastSheets(sheets, details);
     }
 
     /**

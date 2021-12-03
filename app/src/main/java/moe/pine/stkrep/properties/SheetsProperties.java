@@ -9,8 +9,6 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Properties for Google Sheets
- *
- * @see <a href="https://developers.google.com/sheets/api/guides/concepts">Google Sheets API Overview | Google Developers</a>
  */
 @Validated
 @ConstructorBinding

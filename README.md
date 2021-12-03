@@ -1,7 +1,8 @@
 # stkrep
 
-## Development
+Information aggregation tool for stocks
 
+## Development
 
 ### Deployment
 
@@ -21,9 +22,6 @@ $ heroku plugins:install java
 $ heroku deploy:jar --jar app/build/libs/app.jar --jdk 17
 ```
 
-## References
-- [GCP 入門 (18) - Google Sheets API](https://note.com/npaka/n/nd522e980d995)
-- [Java Quickstart | Sheets API | Google Developers](https://developers.google.com/sheets/api/quickstart/java)
-
 ## License
+
 MIT &copy; [Pine Mizune](https://profile.pine.moe/)
