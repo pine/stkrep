@@ -1,4 +1,4 @@
-# stkrep
+# stkrep &nbsp;[![CircleCI](https://circleci.com/gh/pine/stkrep/tree/main.svg?style=shield)](https://circleci.com/gh/pine/stkrep/tree/main) [![codecov](https://codecov.io/gh/pine/stkrep/branch/main/graph/badge.svg)](https://codecov.io/gh/pine/stkrep)
 
 :bar_chart: Daily stocks reporter
 
