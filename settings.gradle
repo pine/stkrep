@@ -2,9 +2,9 @@ rootProject.name = 'stkrep'
 
 include ':app'
 
-for (File f : file('libs').listFiles()) {
-  if (f.directory) {
-    include(":lib-${f.name}")
-    project(":lib-${f.name}").projectDir = f
-  }
+for (File f : rootDir.listFiles()) {
+    if (f.directory && f.name.startsWith('lib-')) {
+        include(":${f.name}")
+        project(":${f.name}").projectDir = f
+    }
 }

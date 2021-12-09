@@ -23,7 +23,7 @@ configure(subprojects.findAll { relativePath(it.projectDir).startsWith('app') })
     apply plugin: 'java'
 }
 
-configure(subprojects.findAll { relativePath(it.projectDir).startsWith('libs/') }) {
+configure(subprojects.findAll { relativePath(it.projectDir).startsWith('lib-') }) {
     apply plugin: 'java-library'
 }
 
