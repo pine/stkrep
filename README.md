@@ -18,7 +18,7 @@ $ heroku login
 $ heroku apps:create [APP]
 $ heroku config:set SPRING_PROFILES_ACTIVE=prod
 $ heroku config:set TZ=Asia/Tokyo
-$ heroku config:set 'JAVA_OPTS=-XX:+UseCompressedOops -XX:+UseStringDeduplication'
+$ heroku config:set 'JAVA_OPTS=-XX:+UseCompressedOops -XX:+UseStringDeduplication -Dlog4j2.formatMsgNoLookups=true'
 
 # Setup Redis
 $ heroku addons:create heroku-redis:hobby-dev
