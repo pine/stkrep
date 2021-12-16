@@ -19,11 +19,11 @@ buildscript {
 
 apply plugin: 'java'
 
-configure(subprojects.findAll { relativePath(it.projectDir).startsWith('app') }) {
+configure(subprojects.findAll { it.name == 'app' }) {
     apply plugin: 'java'
 }
 
-configure(subprojects.findAll { relativePath(it.projectDir).startsWith('lib-') }) {
+configure(subprojects.findAll { it.name.startsWith('lib-') }) {
     apply plugin: 'java-library'
 }
 
@@ -84,7 +84,7 @@ allprojects {
             dependency 'moe.pine:reactor-interruptible:0.1.1'
         }
     }
-    
+
     dependencies {
         // Lombok
         annotationProcessor 'org.projectlombok:lombok'
@@ -181,7 +181,7 @@ task jacocoMerge(type: JacocoMerge) {
     mustRunAfter(subprojects.jacocoTestReport.mustRunAfter)
     destinationFile = file("${buildDir}/jacoco/test.exec")
     executionData = files(subprojects.jacocoTestReport.executionData)
-            .filter { f -> f.exists() }
+        .filter { f -> f.exists() }
 }
 
 jacocoTestReport {
