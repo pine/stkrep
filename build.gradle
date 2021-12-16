@@ -84,6 +84,7 @@ allprojects {
             dependency 'moe.pine:reactor-interruptible:0.1.1'
         }
     }
+    
     dependencies {
         // Lombok
         annotationProcessor 'org.projectlombok:lombok'
@@ -94,6 +95,14 @@ allprojects {
         // Annotations
         compileOnly 'net.jcip:jcip-annotations:1.0'
         compileOnly 'com.github.spotbugs:spotbugs-annotations'
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.apache.logging.log4j') {
+                details.useVersion '2.16.0'
+            }
+        }
     }
 
 
