@@ -97,10 +97,14 @@ allprojects {
         compileOnly 'com.github.spotbugs:spotbugs-annotations'
     }
 
+    configurations {
+        compileClasspath.exclude group: 'org.apache.logging.log4j'
+    }
+
     configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
             if (details.requested.group == 'org.apache.logging.log4j') {
-                details.useVersion '2.16.0'
+                details.useVersion '2.17.0'
             }
         }
     }
