@@ -1,14 +1,7 @@
 dependencies {
-    // Sub-projects
-    implementation project(':lib-retry')
-
     // Spring Framework
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    // HTML parser
-    implementation 'org.jsoup:jsoup'
 
     // Apache Commons
     implementation 'org.apache.commons:commons-lang3'
@@ -16,5 +9,4 @@ dependencies {
 
     // Utilities
     implementation 'com.google.guava:guava'
-    implementation 'moe.pine:reactor-interruptible'
 }
