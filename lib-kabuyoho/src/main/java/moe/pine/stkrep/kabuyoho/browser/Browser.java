@@ -29,7 +29,7 @@ public class Browser {
             UserAgentSupplier userAgentSupplier
     ) {
         this(WebClient.create(),
-                RetryTemplateFactory.create(10, 1000, 2.0, RetryableException.class),
+                RetryTemplateFactory.create(20, 1000, 2.0, RetryableException.class),
                 userAgentSupplier);
     }
 
