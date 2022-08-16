@@ -37,17 +37,16 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
-      - heroku/install
-      - run:
-          name: Deployment
-          command: |
-            if [ "$CIRCLE_BRANCH" == "main" ]; then
-              ./.circleci/setup-retry.sh
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - heroku/install
+            - run:
+                name: Deployment
+                command: |
+                    ./.circleci/setup-retry.sh
 
-              retry -- heroku plugins:install java
-              retry -- heroku deploy:jar \
-                --jar app/build/libs/app.jar \
-                --jdk $JDK_VERSION \
-                --app $HEROKU_APP
-            fi
-
+                    retry -- heroku plugins:install java
+                    retry -- heroku deploy:jar \
+                      --jar app/build/libs/app.jar --jdk $JDK_VERSION --app $HEROKU_APP
