@@ -41,6 +41,6 @@ jobs:
                 name: Deployment
                 command: |
                   ./.circleci/setup-retry.sh
-                  curl -L https://fly.io/install.sh | sh
+                  curl -L https://fly.io/install.sh | FLYCTL_INSTALL=/usr/bin sh
 
                   retry -- fly deploy
