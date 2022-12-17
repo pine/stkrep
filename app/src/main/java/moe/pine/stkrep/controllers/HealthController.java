@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HealthController {
-    @GetMapping("health")
+    @GetMapping({"", "health"})
     @ResponseBody
     public String health() {
         return "OK";

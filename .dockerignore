@@ -1,0 +1,8 @@
+.circleci/
+.git/
+.gradle/
+.idea/
+build/
+out/
+*.iml
+fly.toml
