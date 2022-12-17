@@ -24,6 +24,5 @@ dependencies {
     implementation 'com.github.maricn:logback-slack-appender'
 
     // My Utilities
-    implementation 'moe.pine:heroku-addons'
     implementation 'moe.pine:spring-cache-interceptors'
 }

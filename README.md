@@ -14,16 +14,7 @@
 ### Deployment
 
 ```sh
-$ heroku login
-$ heroku apps:create [APP]
-$ heroku config:set SPRING_PROFILES_ACTIVE=prod
-$ heroku config:set TZ=Asia/Tokyo
-$ heroku config:set 'JAVA_OPTS=-XX:+UseCompressedOops -XX:+UseStringDeduplication -Dlog4j2.formatMsgNoLookups=true'
-
-# Deploy JAR file
-$ ./gradlew build
-$ heroku plugins:install java
-$ heroku deploy:jar --jar app/build/libs/app.jar --jdk 17
+# TODO
 ```
 
 ## License

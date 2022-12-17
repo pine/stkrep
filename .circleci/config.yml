@@ -1,12 +1,10 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@3.2.2
-  heroku: circleci/heroku@1.2.6
 jobs:
   build:
     docker:
       - image: cimg/openjdk:17.0-node
-      - image: redis
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -37,16 +35,3 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
-      - when:
-          condition:
-            equal: [ main, << pipeline.git.branch >> ]
-          steps:
-            - heroku/install
-            - run:
-                name: Deployment
-                command: |
-                    ./.circleci/setup-retry.sh
-
-                    retry -- heroku plugins:install java
-                    retry -- heroku deploy:jar \
-                      --jar app/build/libs/app.jar --jdk $JDK_VERSION --app $HEROKU_APP
