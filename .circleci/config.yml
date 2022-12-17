@@ -33,9 +33,9 @@ jobs:
           condition:
             equal: [ main, << pipeline.git.branch >> ]
           steps:
-              - setup_remote_docker:
-                  version: 20.10.18
-              - run:
+            - setup_remote_docker:
+                version: 20.10.18
+            - run:
                 name: Deployment
                 command: |
                   ./.circleci/setup-retry.sh
