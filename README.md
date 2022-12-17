@@ -12,9 +12,12 @@
 ## Development
 
 ### Deployment
+https://fly.io/docs/hands-on/install-flyctl/
 
 ```sh
-# TODO
+$ fly auth login
+$ fly launch
+$ fly deploy
 ```
 
 ## License
