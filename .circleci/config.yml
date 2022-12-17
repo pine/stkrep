@@ -25,10 +25,6 @@ jobs:
           command: |
             ./gradlew check jacocoTestReport
       - codecov/upload
-      - run:
-          name: Build
-          command: |
-            ./gradlew clean :app:bootJar
       - save_cache:
           paths:
             - ~/.gradle
@@ -43,4 +39,4 @@ jobs:
                   ./.circleci/setup-retry.sh
                   curl -L https://fly.io/install.sh | FLYCTL_INSTALL=/usr/local sh
 
-                  retry -- fly deploy
+                  retry -- fly deploy --auto-confirm
