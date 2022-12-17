@@ -39,4 +39,4 @@ jobs:
                   ./.circleci/setup-retry.sh
                   curl -L https://fly.io/install.sh | FLYCTL_INSTALL=/usr/local sh
 
-                  retry -- fly deploy --auto-confirm
+                  retry -- fly deploy --auto-confirm --detach
