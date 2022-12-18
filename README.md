@@ -10,9 +10,12 @@
 - jsoup
 
 ## Development
+### Run with Docker
+
+
 
 ### Deployment
-https://fly.io/docs/hands-on/install-flyctl/
+The following commands are examples of using [flyctl](https://fly.io/docs/hands-on/install-flyctl/) to deploy this application to [Fly.io](https://fly.io/).
 
 ```sh
 $ fly auth login
