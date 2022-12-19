@@ -6,7 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
-  JAVA_OPTS = "-Xmx180m -XX:+ExitOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -XX:+UseCompressedOops -XX:+UseStringDeduplication"
+  JAVA_TOOL_OPTIONS = "-Xmx180m -XX:+ExitOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -XX:+UseCompressedOops -XX:+UseStringDeduplication"
   SPRING_PROFILES_ACTIVE = "prod"
   SERVER_PORT = 8080
   TZ = "Asia/Tokyo"
