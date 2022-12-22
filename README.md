@@ -44,6 +44,8 @@ The following commands are examples of using [flyctl](https://fly.io/docs/hands-
 ```sh
 $ fly auth login
 $ fly launch
+$ fly secrets set JASYPT_ENCRYPTOR_PASSWORD=<password>
+$ fly secrets set SLACK_WEBHOOK_URI=<webhook_uri>
 $ fly deploy
 ```
 
