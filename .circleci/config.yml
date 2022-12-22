@@ -12,10 +12,6 @@ jobs:
       TZ: "Asia/Tokyo"
     steps:
       - checkout
-      - run:
-          name: Checkout submodule
-          command: |
-            git submodule update --init
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}

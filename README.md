@@ -10,6 +10,27 @@
 - jsoup
 
 ## Development
+### Create Jasypt password
+Use `pwgen` to generate a strong password.
+
+```shell
+$ brew install pwgen
+$ pwgen -s 64
+```
+
+### Encrypt credentials with Jasypt
+To encrypt plain text with Jasypt, please use the command below.
+
+(Replace `~/opt/jasypt` according to your environment.)
+
+```sh
+$ ~/opt/jasypt/bin/encrypt.sh \
+    algorithm=PBEWITHHMACSHA512ANDAES_256 \
+    ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator \
+    password=<password> \
+    input=<input>
+```
+
 ### Run with Docker
 
 ```
