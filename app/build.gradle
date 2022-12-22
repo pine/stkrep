@@ -1,4 +1,20 @@
-apply plugin: 'org.springframework.boot'
+plugins {
+    id 'org.springframework.boot'
+}
+
+def properties = new Properties()
+def secrets = rootProject.file("credentials/secrets.properties")
+if (secrets.exists()) {
+    properties.load(secrets.newDataInputStream())
+}
+
+bootRun {
+    systemProperties = properties
+}
+
+test {
+    systemProperties = properties
+}
 
 dependencies {
     // Sub-projects
@@ -15,7 +31,11 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // Jasypt
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter'
+
     // Apache Commons
+    implementation 'commons-io:commons-io'
     implementation 'org.apache.commons:commons-collections4'
     implementation 'org.apache.commons:commons-lang3'
 

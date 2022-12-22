@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @ConstructorBinding
 @ConfigurationProperties("sheets")
 public record SheetsProperties(
-        @NotBlank String credentialsPath,
+        @NotBlank String credentials,
         @NotBlank String applicationName,
         @NotNull SheetsProperties.ForecastSheets forecastSheets
 ) {

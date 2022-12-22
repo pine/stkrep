@@ -1,0 +1,33 @@
+# Spring Framework
+# ---------------------------
+
+logging:
+  level:
+    moe.pine.stkrep: INFO
+    org.eclipse.jetty.server.session: WARN
+
+server:
+  jetty:
+    threads:
+      max: 8
+      min: 8
+
+
+# Job Scheduler
+# ---------------------------
+
+scheduling:
+  enabled: true
+
+
+# Google Sheets
+# ---------------------------
+
+sheets:
+  credentials: ENC(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)
+  application-name: stkrep
+  forecast-sheets:
+    spreadsheet-id: ENC(59waLNHLiQcq+fbHwjDmURRQXqpuvNVCQNMBPNRsh1Gdnf9lyGSNUr5qiXJoKmnCa++PG+20Ls3ld6Sy6mMh9pKLIj9bTlypZqlnjtOS7NU=)
+    codes-range: '設定!R2C1:C1'
+    result-sheet-name: '結果'
+    result-offset-y: 1
