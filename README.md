@@ -12,7 +12,10 @@
 ## Development
 ### Run with Docker
 
-
+```
+$ docker build -t app .
+$ docker run -it app
+```
 
 ### Deployment
 The following commands are examples of using [flyctl](https://fly.io/docs/hands-on/install-flyctl/) to deploy this application to [Fly.io](https://fly.io/).
