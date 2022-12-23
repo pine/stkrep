@@ -19,7 +19,7 @@ $ pwgen -s 64
 ```
 
 ### Encrypt credentials with Jasypt
-To encrypt plain text with Jasypt, please use the command below.
+To encrypt plain text with [Jasypt](http://www.jasypt.org/), please use the command below.
 
 (Replace `~/opt/jasypt` according to your environment.)
 
